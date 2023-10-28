@@ -37,6 +37,7 @@
 		47BFB24A2AEA721A008ABDA5 = {
 			isa = PBXGroup;
 			children = (
+				474C537E2AEAA7F000115387 /* README.md */,
 				47BFB2552AEA721A008ABDA5 /* camcap */,
 				47BFB2542AEA721A008ABDA5 /* Products */,
 			);
@@ -55,7 +56,6 @@
 			children = (
 				47BFB2562AEA721A008ABDA5 /* camcapApp.swift */,
 				47BFB2582AEA721A008ABDA5 /* ContentView.swift */,
-				474C537E2AEAA7F000115387 /* README.md */,
 				47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */,
 				47BFB25F2AEA721A008ABDA5 /* camcap.entitlements */,
 				47BFB25C2AEA721A008ABDA5 /* Preview Content */,
