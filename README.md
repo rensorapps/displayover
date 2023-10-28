@@ -12,7 +12,5 @@ Status: Everything working except for window modifications and menu.
 
 In descending order of severity:
 
-* Can't switch video device, just uses default
 * Title bar is only semi-transparent, not fully hidden.
 * No Menu item
-* No App icon
