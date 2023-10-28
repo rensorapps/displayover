@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 class TransparentWindowView: NSView {
     override func viewDidMoveToWindow() {
@@ -18,7 +19,7 @@ class TransparentWindowView: NSView {
         window.backgroundColor = .clear
         window.isMovable = true
         window.isMovableByWindowBackground = true
-
+        
         super.viewDidMoveToWindow()
     }
 }
@@ -43,5 +44,37 @@ struct camcapApp: App {
                 .background(TransparentWindow())
         }
         .windowStyle(.hiddenTitleBar)
+        .commands {
+            CommandMenu("Cameras") {
+                // TODO: Authorization may need to be conducted prior to this.
+                let discoverySession = AVCaptureDevice.DiscoverySession(
+                    deviceTypes: [.builtInWideAngleCamera, .deskViewCamera],
+                    mediaType: .video,
+                    position: .unspecified
+                )
+                let zero = ("0" as UnicodeScalar).value
+                ForEach(Array(discoverySession.devices.enumerated()), id: \.0) { (i, device) in
+                    if let c = UnicodeScalar(zero + UInt32(i)) {
+                        Button("\(device.localizedName)") { print("You pressed sub menu.") }
+                            // TODO: Actually switch cameras
+                            .keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
+                    }
+                }
+            }
+//            CommandGroup(replacing: .pasteboard) {
+//                Button("Cut") { print("Cutting something...") }
+//                    .keyboardShortcut("X")
+//                Button("Copy") { print("Copying something...") }
+//                    .keyboardShortcut("C")
+//                Button("Paste") { print("Pasting something...") }
+//                    .keyboardShortcut("V")
+//                Button("Paste and Match Style") { print("Pasting and Matching something...") }
+//                    .keyboardShortcut("V", modifiers: [.command, .option, .shift])
+//                Button("Delete") { print("Deleting something...") }
+//                    .keyboardShortcut(.delete)
+//                Button("Select All") { print("Selecting something...") }
+//                    .keyboardShortcut("A")
+//            }
+        }
     }
 }
