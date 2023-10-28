@@ -45,6 +45,7 @@ struct camcapApp: App {
         }
         .windowStyle(.hiddenTitleBar)
         .commands {
+            // Commands technique taken from https://developer.apple.com/forums/thread/668139
             CommandMenu("Cameras") {
                 // TODO: Authorization may need to be conducted prior to this.
                 let discoverySession = AVCaptureDevice.DiscoverySession(
