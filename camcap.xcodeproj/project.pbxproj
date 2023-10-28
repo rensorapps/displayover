@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		474C537E2AEAA7F000115387 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		47BFB2532AEA721A008ABDA5 /* camcap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camcap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		47BFB2532AEA721A008ABDA5 /* DispLayover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DispLayover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47BFB2562AEA721A008ABDA5 /* camcapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = camcapApp.swift; sourceTree = "<group>"; };
 		47BFB2582AEA721A008ABDA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 		47BFB2542AEA721A008ABDA5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				47BFB2532AEA721A008ABDA5 /* camcap.app */,
+				47BFB2532AEA721A008ABDA5 /* DispLayover.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,9 +74,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		47BFB2522AEA721A008ABDA5 /* camcap */ = {
+		47BFB2522AEA721A008ABDA5 /* DispLayover */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 47BFB2622AEA721A008ABDA5 /* Build configuration list for PBXNativeTarget "camcap" */;
+			buildConfigurationList = 47BFB2622AEA721A008ABDA5 /* Build configuration list for PBXNativeTarget "DispLayover" */;
 			buildPhases = (
 				47BFB24F2AEA721A008ABDA5 /* Sources */,
 				47BFB2502AEA721A008ABDA5 /* Frameworks */,
@@ -86,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = camcap;
+			name = DispLayover;
 			productName = camcap;
-			productReference = 47BFB2532AEA721A008ABDA5 /* camcap.app */;
+			productReference = 47BFB2532AEA721A008ABDA5 /* DispLayover.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				47BFB2522AEA721A008ABDA5 /* camcap */,
+				47BFB2522AEA721A008ABDA5 /* DispLayover */,
 			);
 		};
 /* End PBXProject section */
@@ -282,7 +282,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.camcap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -310,7 +310,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.camcap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -330,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		47BFB2622AEA721A008ABDA5 /* Build configuration list for PBXNativeTarget "camcap" */ = {
+		47BFB2622AEA721A008ABDA5 /* Build configuration list for PBXNativeTarget "DispLayover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				47BFB2632AEA721A008ABDA5 /* Debug */,
