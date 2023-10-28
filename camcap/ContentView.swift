@@ -114,11 +114,22 @@ class ContentViewModel: ObservableObject {
 
     func prepareCamera() {
         captureSession.sessionPreset = .high
+        
+        // Should this be done in another thread or on launch?
+        // Should we have a menu item to allow the user to choose another device?
+        let discoverySession = AVCaptureDevice.DiscoverySession(
+            deviceTypes: [.builtInWideAngleCamera, .deskViewCamera],
+            mediaType: .video,
+            position: .unspecified
+        )
+        
+        guard !discoverySession.devices.isEmpty else { fatalError("Missing capture device.")}
+        let device = discoverySession.devices[0]
+        startSessionForDevice(device)
 
-        // TODO: Let the user select the device.
-        if let device = AVCaptureDevice.default(for: .video) {
-            startSessionForDevice(device)
-        }
+//        if let device = AVCaptureDevice.default(for: .video) {
+//            startSessionForDevice(device)
+//        }
     }
 
     func startSessionForDevice(_ device: AVCaptureDevice) {
