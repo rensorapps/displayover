@@ -1,61 +1,61 @@
 {
   "images" : [
     {
-      "filename" : "cam-layover 9.png",
+      "filename" : "out_16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "cam-layover 8.png",
+      "filename" : "out_32 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "cam-layover 7.png",
+      "filename" : "out_32.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "cam-layover 6.png",
+      "filename" : "out_64.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "cam-layover 5.png",
+      "filename" : "out_128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "cam-layover 4.png",
+      "filename" : "out_256 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "cam-layover 3.png",
+      "filename" : "out_256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "cam-layover 2.png",
+      "filename" : "out_512 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "cam-layover 1.png",
+      "filename" : "out_512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "cam-layover.png",
+      "filename" : "out_1024.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
