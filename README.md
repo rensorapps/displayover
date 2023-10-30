@@ -2,7 +2,7 @@
 
 Overlay your camera preview on your screen similar to Loom's circle presenter feature:
 
-<img width="550" alt="screenshot" src="https://github.com/sordina/camoverlay/assets/92299/903fc091-57c3-498d-8015-a8b0e8f0f0e0">
+<img width="500" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/4f899abe-a273-422c-bd08-af741db3562b">
 
 <br>
 
