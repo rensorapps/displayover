@@ -19,7 +19,12 @@ class TransparentWindowView: NSView {
         window.backgroundColor = .clear
         window.isMovable = true
         window.isMovableByWindowBackground = true
+        window.hasShadow = true
         
+        // Remove buttons, button parent, and button grandparent to just show the circle.
+        window.standardWindowButton(.closeButton)?.superview?.isHidden = true
+        window.standardWindowButton(.closeButton)?.superview?.superview?.isHidden = true
+
         super.viewDidMoveToWindow()
     }
 }
