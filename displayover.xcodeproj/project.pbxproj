@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		47BFB2572AEA721A008ABDA5 /* camcapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2562AEA721A008ABDA5 /* camcapApp.swift */; };
+		47BFB2572AEA721A008ABDA5 /* DispLayoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */; };
 		47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2582AEA721A008ABDA5 /* ContentView.swift */; };
 		47BFB25B2AEA721A008ABDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */; };
 		47BFB25E2AEA721A008ABDA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */; };
@@ -16,11 +16,11 @@
 /* Begin PBXFileReference section */
 		474C537E2AEAA7F000115387 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		47BFB2532AEA721A008ABDA5 /* DispLayover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DispLayover.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		47BFB2562AEA721A008ABDA5 /* camcapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = camcapApp.swift; sourceTree = "<group>"; };
+		47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispLayoverApp.swift; sourceTree = "<group>"; };
 		47BFB2582AEA721A008ABDA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		47BFB25F2AEA721A008ABDA5 /* camcap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = camcap.entitlements; sourceTree = "<group>"; };
+		47BFB25F2AEA721A008ABDA5 /* displayover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = displayover.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				474C537E2AEAA7F000115387 /* README.md */,
-				47BFB2552AEA721A008ABDA5 /* camcap */,
+				47BFB2552AEA721A008ABDA5 /* displayover */,
 				47BFB2542AEA721A008ABDA5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,16 +51,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		47BFB2552AEA721A008ABDA5 /* camcap */ = {
+		47BFB2552AEA721A008ABDA5 /* displayover */ = {
 			isa = PBXGroup;
 			children = (
-				47BFB2562AEA721A008ABDA5 /* camcapApp.swift */,
+				47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */,
 				47BFB2582AEA721A008ABDA5 /* ContentView.swift */,
 				47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */,
-				47BFB25F2AEA721A008ABDA5 /* camcap.entitlements */,
+				47BFB25F2AEA721A008ABDA5 /* displayover.entitlements */,
 				47BFB25C2AEA721A008ABDA5 /* Preview Content */,
 			);
-			path = camcap;
+			path = displayover;
 			sourceTree = "<group>";
 		};
 		47BFB25C2AEA721A008ABDA5 /* Preview Content */ = {
@@ -87,7 +87,7 @@
 			dependencies = (
 			);
 			name = DispLayover;
-			productName = camcap;
+			productName = displayover;
 			productReference = 47BFB2532AEA721A008ABDA5 /* DispLayover.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -106,7 +106,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 47BFB24E2AEA721A008ABDA5 /* Build configuration list for PBXProject "camcap" */;
+			buildConfigurationList = 47BFB24E2AEA721A008ABDA5 /* Build configuration list for PBXProject "displayover" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */,
-				47BFB2572AEA721A008ABDA5 /* camcapApp.swift in Sources */,
+				47BFB2572AEA721A008ABDA5 /* DispLayoverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,11 +267,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = camcap/camcap.entitlements;
+				CODE_SIGN_ENTITLEMENTS = displayover/displayover.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"camcap/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"displayover/Preview Content\"";
 				DEVELOPMENT_TEAM = 2UQ6XK8PJD;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -283,7 +283,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = RenSor.camcap;
+				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -295,11 +295,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = camcap/camcap.entitlements;
+				CODE_SIGN_ENTITLEMENTS = displayover/displayover.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"camcap/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"displayover/Preview Content\"";
 				DEVELOPMENT_TEAM = 2UQ6XK8PJD;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -311,7 +311,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = RenSor.camcap;
+				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -321,7 +321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		47BFB24E2AEA721A008ABDA5 /* Build configuration list for PBXProject "camcap" */ = {
+		47BFB24E2AEA721A008ABDA5 /* Build configuration list for PBXProject "displayover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				47BFB2602AEA721A008ABDA5 /* Debug */,

@@ -36,7 +36,7 @@ struct TransparentWindow: NSViewRepresentable {
 
 
 @main
-struct camcapApp: App {
+struct dispLayoverApp: App {
     
     var body: some Scene {
         WindowGroup {
@@ -62,20 +62,6 @@ struct camcapApp: App {
                     }
                 }
             }
-//            CommandGroup(replacing: .pasteboard) {
-//                Button("Cut") { print("Cutting something...") }
-//                    .keyboardShortcut("X")
-//                Button("Copy") { print("Copying something...") }
-//                    .keyboardShortcut("C")
-//                Button("Paste") { print("Pasting something...") }
-//                    .keyboardShortcut("V")
-//                Button("Paste and Match Style") { print("Pasting and Matching something...") }
-//                    .keyboardShortcut("V", modifiers: [.command, .option, .shift])
-//                Button("Delete") { print("Deleting something...") }
-//                    .keyboardShortcut(.delete)
-//                Button("Select All") { print("Selecting something...") }
-//                    .keyboardShortcut("A")
-//            }
         }
     }
 }
