@@ -1,10 +1,10 @@
 # DispLayover
 
-![image](https://github.com/sordina/camoverlay/assets/92299/6b1faf42-6c51-4f57-9171-b1d0ba9f4774)
+<img width="300" alt="logo" src="https://github.com/sordina/camoverlay/assets/92299/6b1faf42-6c51-4f57-9171-b1d0ba9f4774">
 
 Overlay your camera preview on your screen similar to Loom's circle presenter feature:
 
-<img width="550" alt="image" src="https://github.com/sordina/camoverlay/assets/92299/903fc091-57c3-498d-8015-a8b0e8f0f0e0">
+<img width="550" alt="screenshot" src="https://github.com/sordina/camoverlay/assets/92299/903fc091-57c3-498d-8015-a8b0e8f0f0e0">
 
 Based almost entirely on: https://benoitpasquier.com/webcam-utility-app-macos-swiftui/
 
