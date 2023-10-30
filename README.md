@@ -14,8 +14,6 @@ Status: Everything working except for window modifications and menu.
 
 In descending order of severity:
 
-* Title bar is only semi-transparent, not fully hidden.
 * Camera menu is currently NOP
-* App should be renamed to "Cam Overlay" or "Layover" or something clever
-
+* Need to grab window from 'hidden corner' to resize
 
