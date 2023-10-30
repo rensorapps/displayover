@@ -13,23 +13,37 @@ import Combine
 
 class PlayerView: NSView {
     
-    var previewLayer: AVCaptureVideoPreviewLayer?
-
-    init(captureSession: AVCaptureSession) {
+    private var previewLayer: AVCaptureVideoPreviewLayer?
+    private weak var settings: UserSettings?
+    private lazy var cancellables = Set<AnyCancellable>()
+    
+    init(captureSession: AVCaptureSession, settings: UserSettings? = nil) {
+        self.settings = settings
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         super.init(frame: .zero)
-
         setupLayer()
     }
 
     func setupLayer() {
+        
+        guard let preview = previewLayer else { return }
 
-        previewLayer?.frame = self.frame
-        previewLayer?.contentsGravity = .resizeAspectFill
-        previewLayer?.videoGravity = .resizeAspectFill
-        previewLayer?.connection?.automaticallyAdjustsVideoMirroring = false
+        preview.frame = self.frame
+        preview.contentsGravity = .resizeAspectFill
+        preview.videoGravity = .resizeAspectFill
+        preview.connection?.automaticallyAdjustsVideoMirroring = false
+        preview.connection?.isVideoMirrored = true
+        
         layer = previewLayer
-        previewLayer?.connection?.isVideoMirrored = true // TODO: Use settings
+        
+        guard let settings else { return }
+        
+        settings.$isMirroring
+            .subscribe(on: RunLoop.main)
+            .sink { isMirroring in
+                preview.connection?.isVideoMirrored = isMirroring
+            }
+            .store(in: &cancellables)
     }
 
     required init?(coder: NSCoder) {
@@ -38,16 +52,18 @@ class PlayerView: NSView {
 }
 
 struct PlayerContainerView: NSViewRepresentable {
-    typealias NSViewType = PlayerView
-
+//    typealias NSViewType = PlayerView
+    
+    let settings: UserSettings
     let captureSession: AVCaptureSession
 
-    init(captureSession: AVCaptureSession) {
+    init(captureSession: AVCaptureSession, settings: UserSettings) {
         self.captureSession = captureSession
+        self.settings = settings
     }
 
     func makeNSView(context: Context) -> PlayerView {
-        return PlayerView(captureSession: captureSession)
+        return PlayerView(captureSession: captureSession, settings: settings)
     }
 
     func updateNSView(_ nsView: PlayerView, context: Context) { }
@@ -154,19 +170,32 @@ class ContentViewModel: ObservableObject {
 struct ContentView: View {
 
     @ObservedObject var viewModel = ContentViewModel()
+    @EnvironmentObject var settings: UserSettings
     
     init() {
         viewModel.checkAuthorization()
     }
 
     var body: some View {
-        PlayerContainerView(captureSession: viewModel.captureSession)
-           .clipShape(Circle())
+        PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
+           .clipShape(settings.shapeView())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+
     static var previews: some View {
-        ContentView()
+        let settings = UserSettings()
+
+        VStack {
+            HStack {
+                Button("Circle") {settings.shape = .circle}
+                Button("Rectangle") {settings.shape = .rectangle}
+                Button("Hexagon") {settings.shape = .hexagon}
+            }
+            Button("Mirror") {settings.isMirroring.toggle()}
+
+            ContentView().environmentObject(settings)
+        }
     }
 }
