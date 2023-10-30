@@ -1,6 +1,6 @@
 # DispLayover
 
-<img width="179" alt="image" src="https://github.com/sordina/camoverlay/assets/92299/80fe7e19-477c-41aa-8c9e-c1b7b9a9878b">
+![image](https://github.com/sordina/camoverlay/assets/92299/6b1faf42-6c51-4f57-9171-b1d0ba9f4774)
 
 Overlay your camera preview on your screen similar to Loom's circle presenter feature:
 
