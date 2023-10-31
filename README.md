@@ -27,3 +27,7 @@ In descending order of severity:
 <img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/a70caa20-6300-4e9c-9ab0-305cb81dd78c">
 
 
+## Other Applications
+
+* https://www.loom.com/
+* https://www.mmhmm.app/
