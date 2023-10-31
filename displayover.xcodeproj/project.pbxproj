@@ -11,6 +11,7 @@
 		47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2582AEA721A008ABDA5 /* ContentView.swift */; };
 		47BFB25B2AEA721A008ABDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */; };
 		47BFB25E2AEA721A008ABDA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */; };
+		47E422242AF00E7E00FBB61A /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E422232AF00E7E00FBB61A /* Shapes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		47BFB25F2AEA721A008ABDA5 /* displayover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = displayover.entitlements; sourceTree = "<group>"; };
+		47E422232AF00E7E00FBB61A /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */,
+				47E422232AF00E7E00FBB61A /* Shapes.swift */,
 				47BFB2582AEA721A008ABDA5 /* ContentView.swift */,
 				47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */,
 				47BFB25F2AEA721A008ABDA5 /* displayover.entitlements */,
@@ -143,6 +146,7 @@
 			files = (
 				47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */,
 				47BFB2572AEA721A008ABDA5 /* DispLayoverApp.swift in Sources */,
+				47E422242AF00E7E00FBB61A /* Shapes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +286,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -310,7 +314,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

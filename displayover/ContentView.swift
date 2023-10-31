@@ -72,6 +72,8 @@ struct PlayerContainerView: NSViewRepresentable {
 class ContentViewModel: ObservableObject {
 
     @Published var isGranted: Bool = false
+    @Published var device: AVCaptureDevice?
+
     var captureSession: AVCaptureSession!
     private var cancellables = Set<AnyCancellable>()
 
@@ -87,6 +89,13 @@ class ContentViewModel: ObservableObject {
                     self?.prepareCamera()
                 } else {
                     self?.stopSession()
+                }
+            }
+            .store(in: &cancellables)
+        $device
+            .sink { [weak self] device in
+                if let device {
+                    self?.startSessionForDevice(device)
                 }
             }
             .store(in: &cancellables)
@@ -169,8 +178,8 @@ class ContentViewModel: ObservableObject {
 
 struct ContentView: View {
 
-    @ObservedObject var viewModel = ContentViewModel()
     @EnvironmentObject var settings: UserSettings
+    @ObservedObject var viewModel = ContentViewModel()
     
     init() {
         viewModel.checkAuthorization()

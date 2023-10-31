@@ -8,34 +8,19 @@
 import SwiftUI
 import AVFoundation
 
-struct Hexagon: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let width = rect.width
-        let height = rect.height
-        let side = min(width, height) / 2
-        let x = rect.midX
-        let y = rect.midY
-        path.move(to: CGPoint(x: x + side, y: y))
-        for theta in ((1...6).map { CGFloat($0) * Double.pi / 3.0 }) {
-            path.addLine(to: CGPoint(x: x + side * cos(theta), y: y + side * sin(theta)))
-        }
-        
-        path.closeSubpath()
-        return path
-    }
-}
-
 class UserSettings: ObservableObject {
     @Published var shape = Shape.circle
     @Published var isMirroring = true
-    
+    @Published var device: AVCaptureDevice?
+    //    @Published var devices: Array<(Int,AVCaptureDevice)> = []
+
     enum Shape {
         case circle
         case rectangle
         case capsule
         case ellipse
         case hexagon
+        case blob
     }
     
     func shapeView() -> AnyShape {
@@ -50,6 +35,8 @@ class UserSettings: ObservableObject {
             return AnyShape(Ellipse())
         case .hexagon:
             return AnyShape(Hexagon())
+        case .blob:
+            return AnyShape(Blob1(count: 10))
         }
     }
 }
@@ -105,6 +92,7 @@ struct dispLayoverApp: App {
                 Button("Capsule")   { settings.shape = .capsule   }.keyboardShortcut("s")
                 Button("Ellipse")   { settings.shape = .ellipse   }.keyboardShortcut("e")
                 Button("Hexagon")   { settings.shape = .hexagon   }.keyboardShortcut("h")
+                Button("Blob")      { settings.shape = .blob      }.keyboardShortcut("b")
             }
             
             CommandMenu("Mirroring") {
@@ -122,9 +110,8 @@ struct dispLayoverApp: App {
                 let zero = ("0" as UnicodeScalar).value
                 ForEach(Array(discoverySession.devices.enumerated()), id: \.0) { (i, device) in
                     if let c = UnicodeScalar(zero + UInt32(i)) {
-                        Button("\(device.localizedName)") { print("You pressed sub menu.") }
-                            // TODO: Actually switch cameras
-                            .keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
+                        Button("\(device.localizedName)") { settings.device = device }
+                        .keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
                     }
                 }
             }
