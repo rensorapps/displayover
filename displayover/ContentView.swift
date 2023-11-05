@@ -130,20 +130,41 @@ struct ContentView: View {
 
     @EnvironmentObject var settings: UserSettings
     @ObservedObject var viewModel = ContentViewModel()
+    @State var hover = false
     
     init(_ initialSettings: UserSettings) {
         viewModel.device = initialSettings.device
     }
 
     var body: some View {
-        PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
-           .clipShape(settings.shapeView())
-           // Update viewModel.device when it changes.
-           .onChange(of: settings.device) { device in
-               guard let device else { return }
-               print("Device changed: \(device)")
-               viewModel.device = device
-           }
+        ZStack {
+            PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
+                .clipShape(settings.shapeView())
+                // Update viewModel.device when it changes.
+                .onChange(of: settings.device) { device in
+                    guard let device else { return }
+                    print("Device changed: \(device)")
+                    viewModel.device = device
+                }
+            VStack(spacing: 0) {
+                if(hover) {
+                    Spacer()
+                    HStack(spacing: 0) {
+                        Button(action: { print("smaller") }, label: { Image(systemName: "minus.circle.fill") })
+                        Button(action: { print("bigger") }, label: { Image(systemName: "plus.circle.fill") })
+                        Button(action: { print("help") }, label: {
+                            Link(destination: URL(string: "https://github.com/sordina/displayover")!, label: {
+                                Image(systemName: "questionmark.circle.fill")
+                            })
+                        })
+                    }
+                }
+            }
+            .transition(.opacity)
+        }
+        .onHover { x in
+            hover = x
+        }
     }
 }
 
