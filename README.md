@@ -13,13 +13,12 @@ Works well in conjunction with QuickTime for screen recording.
 
 ## Issues and Missing Features
 
-In descending order of severity:
+See [Github Issues](https://github.com/sordina/displayover/issues) for currently open issues.
 
-* Camera menu is currently NOP
-* Need to grab window from 'hidden corner' to resize
+Please [submit an issue here](https://github.com/sordina/displayover/issues/new) if you find a new one.
+
 
 ## Screenshots
-
 
 <img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/5cbd7a7e-72d0-43c6-b271-99307334b1ec">
 <img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/b2fe52cc-b40b-4244-8d96-5351b3a3dc43">

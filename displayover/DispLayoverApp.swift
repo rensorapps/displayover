@@ -8,6 +8,10 @@
 import SwiftUI
 import AVFoundation
 
+//extension AVCaptureDevice: Equatable {
+//    
+//}
+
 class UserSettings: ObservableObject {
     @Published var shape = Shape.circle
     @Published var isMirroring = true
@@ -20,6 +24,7 @@ class UserSettings: ObservableObject {
         case capsule
         case ellipse
         case hexagon
+        case heart
         case blob
     }
     
@@ -37,6 +42,8 @@ class UserSettings: ObservableObject {
             return AnyShape(Hexagon())
         case .blob:
             return AnyShape(Blob1(count: 10))
+        case .heart:
+            return AnyShape(Heart())
         }
     }
 }
@@ -54,7 +61,7 @@ class TransparentWindowView: NSView {
         window.isMovableByWindowBackground = true
         window.hasShadow = true
         
-        // Remove buttons, button parent, and button grandparent to just show the circle.
+        // Remove close button parent, and grandparent to just show the circle.
         window.standardWindowButton(.closeButton)?.superview?.isHidden = true
         window.standardWindowButton(.closeButton)?.superview?.superview?.isHidden = true
 
@@ -72,15 +79,19 @@ struct TransparentWindow: NSViewRepresentable {
     }
 }
 
-
 @main
 struct dispLayoverApp: App {
     
     let settings = UserSettings()
+    let cameras = Cameras().getCameras()
+    
+    init() {
+        settings.device = cameras[0]
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(settings)
                 .background(TransparentWindow())
                 .environmentObject(settings)
         }
@@ -92,6 +103,7 @@ struct dispLayoverApp: App {
                 Button("Capsule")   { settings.shape = .capsule   }.keyboardShortcut("s")
                 Button("Ellipse")   { settings.shape = .ellipse   }.keyboardShortcut("e")
                 Button("Hexagon")   { settings.shape = .hexagon   }.keyboardShortcut("h")
+                Button("Heart")     { settings.shape = .heart     }.keyboardShortcut("t")
                 Button("Blob")      { settings.shape = .blob      }.keyboardShortcut("b")
             }
             
@@ -101,17 +113,11 @@ struct dispLayoverApp: App {
 
             // Commands technique taken from https://developer.apple.com/forums/thread/668139
             CommandMenu("Cameras") {
-                // TODO: Authorization may need to be conducted prior to this.
-                let discoverySession = AVCaptureDevice.DiscoverySession(
-                    deviceTypes: [.builtInWideAngleCamera, .deskViewCamera],
-                    mediaType: .video,
-                    position: .unspecified
-                )
-                let zero = ("0" as UnicodeScalar).value
-                ForEach(Array(discoverySession.devices.enumerated()), id: \.0) { (i, device) in
+                let zero = ("1" as UnicodeScalar).value
+                ForEach(Array(cameras.enumerated()), id: \.0) { (i, device) in
                     if let c = UnicodeScalar(zero + UInt32(i)) {
                         Button("\(device.localizedName)") { settings.device = device }
-                        .keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
+                          .keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
                     }
                 }
             }

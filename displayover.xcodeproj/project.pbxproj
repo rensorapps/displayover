@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47AB95CA2AF777B200F6A82C /* Cameras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB95C92AF777B200F6A82C /* Cameras.swift */; };
 		47BFB2572AEA721A008ABDA5 /* DispLayoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */; };
 		47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2582AEA721A008ABDA5 /* ContentView.swift */; };
 		47BFB25B2AEA721A008ABDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		474C537E2AEAA7F000115387 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		47AB95C92AF777B200F6A82C /* Cameras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameras.swift; sourceTree = "<group>"; };
 		47BFB2532AEA721A008ABDA5 /* DispLayover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DispLayover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispLayoverApp.swift; sourceTree = "<group>"; };
 		47BFB2582AEA721A008ABDA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */,
 				47E422232AF00E7E00FBB61A /* Shapes.swift */,
+				47AB95C92AF777B200F6A82C /* Cameras.swift */,
 				47BFB2582AEA721A008ABDA5 /* ContentView.swift */,
 				47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */,
 				47BFB25F2AEA721A008ABDA5 /* displayover.entitlements */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47AB95CA2AF777B200F6A82C /* Cameras.swift in Sources */,
 				47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */,
 				47BFB2572AEA721A008ABDA5 /* DispLayoverApp.swift in Sources */,
 				47E422242AF00E7E00FBB61A /* Shapes.swift in Sources */,
@@ -286,7 +290,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -314,7 +318,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

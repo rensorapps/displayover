@@ -10,14 +10,13 @@ import AVFoundation
 import AppKit
 import Combine
 
-
 class PlayerView: NSView {
     
     private var previewLayer: AVCaptureVideoPreviewLayer?
     private weak var settings: UserSettings?
     private lazy var cancellables = Set<AnyCancellable>()
     
-    init(captureSession: AVCaptureSession, settings: UserSettings? = nil) {
+    init(captureSession: AVCaptureSession, settings: UserSettings) {
         self.settings = settings
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         super.init(frame: .zero)
@@ -52,8 +51,6 @@ class PlayerView: NSView {
 }
 
 struct PlayerContainerView: NSViewRepresentable {
-//    typealias NSViewType = PlayerView
-    
     let settings: UserSettings
     let captureSession: AVCaptureSession
 
@@ -70,8 +67,7 @@ struct PlayerContainerView: NSViewRepresentable {
 }
 
 class ContentViewModel: ObservableObject {
-
-    @Published var isGranted: Bool = false
+    
     @Published var device: AVCaptureDevice?
 
     var captureSession: AVCaptureSession!
@@ -79,52 +75,18 @@ class ContentViewModel: ObservableObject {
 
     init() {
         captureSession = AVCaptureSession()
-        setupBindings()
-    }
-
-    func setupBindings() {
-        $isGranted
-            .sink { [weak self] isGranted in
-                if isGranted {
-                    self?.prepareCamera()
-                } else {
-                    self?.stopSession()
-                }
-            }
-            .store(in: &cancellables)
+        
+        if let d = device {
+            startSessionForDevice(d)
+        }
+        
         $device
             .sink { [weak self] device in
-                if let device {
-                    self?.startSessionForDevice(device)
-                }
+                guard let device else { return }
+                self?.startSessionForDevice(device)
             }
             .store(in: &cancellables)
-    }
-
-    func checkAuthorization() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-            case .authorized: // The user has previously granted access to the camera.
-                self.isGranted = true
-
-            case .notDetermined: // The user has not yet been asked for camera access.
-                AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-                    if granted {
-                        DispatchQueue.main.async {
-                            self?.isGranted = granted
-                        }
-                    }
-                }
-
-            case .denied: // The user has previously denied access.
-                self.isGranted = false
-                return
-
-            case .restricted: // The user can't grant access due to restrictions.
-                self.isGranted = false
-                return
-        @unknown default:
-            fatalError()
-        }
+        
     }
 
     func startSession() {
@@ -138,23 +100,8 @@ class ContentViewModel: ObservableObject {
     }
 
     func prepareCamera() {
-        captureSession.sessionPreset = .high
-        
-        // Should this be done in another thread or on launch?
-        // Should we have a menu item to allow the user to choose another device?
-        let discoverySession = AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInWideAngleCamera, .deskViewCamera],
-            mediaType: .video,
-            position: .unspecified
-        )
-        
-        guard !discoverySession.devices.isEmpty else { fatalError("Missing capture device.")}
-        let device = discoverySession.devices[0]
+        guard let device else { return }
         startSessionForDevice(device)
-
-//        if let device = AVCaptureDevice.default(for: .video) {
-//            startSessionForDevice(device)
-//        }
     }
 
     func startSessionForDevice(_ device: AVCaptureDevice) {
@@ -169,7 +116,10 @@ class ContentViewModel: ObservableObject {
     }
 
     func addInput(_ input: AVCaptureInput) {
-        guard captureSession.canAddInput(input) == true else {
+        for i in captureSession.inputs {
+            captureSession.removeInput(i)
+        }
+        guard captureSession.canAddInput(input) else {
             return
         }
         captureSession.addInput(input)
@@ -181,13 +131,19 @@ struct ContentView: View {
     @EnvironmentObject var settings: UserSettings
     @ObservedObject var viewModel = ContentViewModel()
     
-    init() {
-        viewModel.checkAuthorization()
+    init(_ initialSettings: UserSettings) {
+        viewModel.device = initialSettings.device
     }
 
     var body: some View {
         PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
            .clipShape(settings.shapeView())
+           // Update viewModel.device when it changes.
+           .onChange(of: settings.device) { device in
+               guard let device else { return }
+               print("Device changed: \(device)")
+               viewModel.device = device
+           }
     }
 }
 
@@ -201,10 +157,9 @@ struct ContentView_Previews: PreviewProvider {
                 Button("Circle") {settings.shape = .circle}
                 Button("Rectangle") {settings.shape = .rectangle}
                 Button("Hexagon") {settings.shape = .hexagon}
+                Button("Mirror") {settings.isMirroring.toggle()}
             }
-            Button("Mirror") {settings.isMirroring.toggle()}
-
-            ContentView().environmentObject(settings)
+            ContentView(settings).environmentObject(settings)
         }
     }
 }
