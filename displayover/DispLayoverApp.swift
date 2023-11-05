@@ -108,7 +108,7 @@ struct dispLayoverApp: App {
             }
             
             CommandMenu("Mirroring") {
-                Button("Mirror") { settings.isMirroring.toggle() }.keyboardShortcut("m")
+                Button("Mirror") { settings.isMirroring.toggle() }.keyboardShortcut("f")
             }
 
             // Commands technique taken from https://developer.apple.com/forums/thread/668139
