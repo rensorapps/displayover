@@ -12,7 +12,9 @@ Initially bsed on https://benoitpasquier.com/webcam-utility-app-macos-swiftui/
 Works well in conjunction with QuickTime for screen recording.
 
 
-## Issues and Missing Features
+## Limitations, Issues, and Missing Features
+
+**NOTE: This is NOT screencasting or streaming software, just the webcam overlay**
 
 See [Github Issues](https://github.com/rensorapps/displayover/issues) for currently open issues.
 
