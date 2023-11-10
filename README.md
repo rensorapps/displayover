@@ -5,8 +5,9 @@ Overlay your camera preview on your screen similar to Loom's circle presenter fe
 <img width="500" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/4f899abe-a273-422c-bd08-af741db3562b">
 
 <br>
+<br>
 
-Based almost entirely on: https://benoitpasquier.com/webcam-utility-app-macos-swiftui/
+Initially bsed on https://benoitpasquier.com/webcam-utility-app-macos-swiftui/
 
 Works well in conjunction with QuickTime for screen recording.
 
