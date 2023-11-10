@@ -8,10 +8,6 @@
 import SwiftUI
 import AVFoundation
 
-//extension AVCaptureDevice: Equatable {
-//    
-//}
-
 class UserSettings: ObservableObject {
     @Published var shape = AnyShape(Circle())
     @Published var isMirroring = true
@@ -52,8 +48,8 @@ struct TransparentWindow: NSViewRepresentable {
 @main
 struct dispLayoverApp: App {
     
-    let settings = UserSettings()
     let cameras = Cameras().getCameras()
+    @ObservedObject var settings = UserSettings()
     
     init() {
         // Cameras() Should have prompted for required permissions
@@ -62,7 +58,7 @@ struct dispLayoverApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(settings)
+            ContentView()
                 .background(TransparentWindow())
                 .environmentObject(settings)
         }
@@ -95,8 +91,10 @@ struct dispLayoverApp: App {
                 let zero = ("1" as UnicodeScalar).value
                 ForEach(Array(cameras.enumerated()), id: \.0) { (i, device) in
                     if let c = UnicodeScalar(zero + UInt32(i)) {
-                        Button("\(device.localizedName)") { settings.device = device }
-                          .keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
+                        Button("\(device.localizedName)") {
+                            print("Changing Device to \(device)")
+                            settings.device = device
+                        }.keyboardShortcut(KeyboardShortcut(KeyEquivalent(Character(c))))
                     }
                 }
             }

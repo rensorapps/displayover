@@ -68,25 +68,14 @@ struct PlayerContainerView: NSViewRepresentable {
 
 class ContentViewModel: ObservableObject {
     
-    @Published var device: AVCaptureDevice?
+    @Published var device: AVCaptureDevice
 
     var captureSession: AVCaptureSession!
     private var cancellables = Set<AnyCancellable>()
 
     init() {
         captureSession = AVCaptureSession()
-        
-        if let d = device {
-            startSessionForDevice(d)
-        }
-        
-        $device
-            .sink { [weak self] device in
-                guard let device else { return }
-                self?.startSessionForDevice(device)
-            }
-            .store(in: &cancellables)
-        
+        startSessionForDevice(device)
     }
 
     func startSession() {
@@ -97,11 +86,6 @@ class ContentViewModel: ObservableObject {
     func stopSession() {
         guard captureSession.isRunning else { return }
         captureSession.stopRunning()
-    }
-
-    func prepareCamera() {
-        guard let device else { return }
-        startSessionForDevice(device)
     }
 
     func startSessionForDevice(_ device: AVCaptureDevice) {
@@ -129,23 +113,14 @@ class ContentViewModel: ObservableObject {
 struct ContentView: View {
 
     @EnvironmentObject var settings: UserSettings
-    @ObservedObject var viewModel = ContentViewModel()
     @State var hover = false
     
-    init(_ initialSettings: UserSettings) {
-        viewModel.device = initialSettings.device
-    }
-
+    let viewModel = ContentViewModel(device: settings.device)
+    
     var body: some View {
         ZStack {
-            PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
+            PlayerContainerView(captureSession:  viewModel.captureSession, settings: settings)
                 .clipShape(settings.shape)
-                // Update viewModel.device when it changes.
-                .onChange(of: settings.device) { device in
-                    guard let device else { return }
-                    print("Device changed: \(device)")
-                    viewModel.device = device
-                }
             VStack(spacing: 0) {
                 if(hover) {
                     Spacer()
@@ -153,7 +128,7 @@ struct ContentView: View {
                         // Button(action: { print("smaller") }, label: { Image(systemName: "minus.circle.fill") })
                         // Button(action: { print("bigger") }, label: { Image(systemName: "plus.circle.fill") })
                         Button(action: { print("help") }, label: {
-                            Link(destination: URL(string: "https://github.com/sordina/displayover")!, label: {
+                            Link(destination: URL(string: "https://github.com/rensorapps/displayover")!, label: {
                                 Image(systemName: "questionmark.circle.fill")
                             })
                         })
@@ -165,13 +140,15 @@ struct ContentView: View {
         .onHover { x in
             hover = x
         }
+        .onAppear {
+            print("Created ContentView")
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-
     static var previews: some View {
         let settings = UserSettings()
-        ContentView(settings).environmentObject(settings)
+        ContentView(device: settings.device!).environmentObject(settings)
     }
 }
