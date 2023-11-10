@@ -11,6 +11,9 @@ Initially bsed on https://benoitpasquier.com/webcam-utility-app-macos-swiftui/
 
 Works well in conjunction with QuickTime for screen recording.
 
+## Buy Us a Coffee!
+
+[![](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/rensorapps)
 
 ## Limitations, Issues, and Missing Features
 
