@@ -58,9 +58,12 @@ struct dispLayoverApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(device: settings.device!)
                 .background(TransparentWindow())
                 .environmentObject(settings)
+                .onChange(of: settings.device) { d in
+                    print("Device changed \(d!)")
+                }
         }
         .windowStyle(.hiddenTitleBar)
         .commands {

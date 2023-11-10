@@ -68,13 +68,14 @@ struct PlayerContainerView: NSViewRepresentable {
 
 class ContentViewModel: ObservableObject {
     
-    @Published var device: AVCaptureDevice
+    var device: AVCaptureDevice
 
     var captureSession: AVCaptureSession!
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
+    init(_ device: AVCaptureDevice) {
         captureSession = AVCaptureSession()
+        self.device = device
         startSessionForDevice(device)
     }
 
@@ -114,11 +115,11 @@ struct ContentView: View {
 
     @EnvironmentObject var settings: UserSettings
     @State var hover = false
-    
-    let viewModel = ContentViewModel(device: settings.device)
+    var device: AVCaptureDevice
     
     var body: some View {
         ZStack {
+            let viewModel = ContentViewModel(device)
             PlayerContainerView(captureSession:  viewModel.captureSession, settings: settings)
                 .clipShape(settings.shape)
             VStack(spacing: 0) {
