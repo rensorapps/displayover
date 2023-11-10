@@ -39,7 +39,7 @@ class Cameras: ObservableObject {
     func getCameras() -> Array<AVCaptureDevice> {
         
         let discoverySession = AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInWideAngleCamera, .deskViewCamera],
+            deviceTypes: [.builtInWideAngleCamera, .externalUnknown, .deskViewCamera],
             mediaType: .video,
             position: .unspecified
         )

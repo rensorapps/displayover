@@ -63,7 +63,9 @@ struct PlayerContainerView: NSViewRepresentable {
         return PlayerView(captureSession: captureSession, settings: settings)
     }
 
-    func updateNSView(_ nsView: PlayerView, context: Context) { }
+    func updateNSView(_ nsView: PlayerView, context: Context) {
+        nsView.setupLayer() // Fixes mirroring!
+    }
 }
 
 class ContentViewModel: ObservableObject {
