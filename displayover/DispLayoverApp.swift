@@ -86,6 +86,7 @@ struct dispLayoverApp: App {
     let cameras = Cameras().getCameras()
     
     init() {
+        // Cameras() Should have prompted for required permissions
         settings.device = cameras[0]
     }
     
