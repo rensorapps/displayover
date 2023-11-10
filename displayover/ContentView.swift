@@ -139,7 +139,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
-                .clipShape(settings.shapeView())
+                .clipShape(settings.shape)
                 // Update viewModel.device when it changes.
                 .onChange(of: settings.device) { device in
                     guard let device else { return }
@@ -172,15 +172,6 @@ struct ContentView_Previews: PreviewProvider {
 
     static var previews: some View {
         let settings = UserSettings()
-
-        VStack {
-            HStack {
-                Button("Circle") {settings.shape = .circle}
-                Button("Rectangle") {settings.shape = .rectangle}
-                Button("Hexagon") {settings.shape = .hexagon}
-                Button("Mirror") {settings.isMirroring.toggle()}
-            }
-            ContentView(settings).environmentObject(settings)
-        }
+        ContentView(settings).environmentObject(settings)
     }
 }
