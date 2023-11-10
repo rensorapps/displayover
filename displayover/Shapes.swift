@@ -210,3 +210,27 @@ struct Shapes_Previews: PreviewProvider {
         }
     }
 }
+
+enum ShapeType: CaseIterable {
+    case circle
+    case rectangle
+    case capsule
+    case ellipse
+    case hexagon
+    case heart
+    case cloud
+    case blob
+}
+
+func mkShape(_ t: ShapeType) -> AnyShape {
+    switch t {
+    case .circle:    return AnyShape(Circle())
+    case .rectangle: return AnyShape(RoundedRectangle(cornerRadius: 20))
+    case .capsule:   return AnyShape(Capsule())
+    case .ellipse:   return AnyShape(Ellipse())
+    case .hexagon:   return AnyShape(Hexagon())
+    case .heart:     return AnyShape(Heart())
+    case .cloud:     return AnyShape(Blob1(count: 10))
+    case .blob:      return AnyShape(try! Blob2(count: 7))
+    }
+}

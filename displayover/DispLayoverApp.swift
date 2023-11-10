@@ -69,14 +69,21 @@ struct dispLayoverApp: App {
         .windowStyle(.hiddenTitleBar)
         .commands {
             CommandMenu("Shape") {
-                Button("Circle")    { settings.shape = AnyShape(Circle())                             }.keyboardShortcut("c")
-                Button("Rectangle") { settings.shape = AnyShape(Rectangle())                          }.keyboardShortcut("r")
-                Button("Capsule")   { settings.shape = AnyShape(Capsule())                            }.keyboardShortcut("s")
-                Button("Ellipse")   { settings.shape = AnyShape(RoundedRectangle(cornerRadius: 20))   }.keyboardShortcut("e")
-                Button("Hexagon")   { settings.shape = AnyShape(Hexagon())                            }.keyboardShortcut("h")
-                Button("Heart")     { settings.shape = AnyShape(Heart())                              }.keyboardShortcut("t")
-                Button("Cloud")     { settings.shape = AnyShape(Blob1(count: 10))                     }.keyboardShortcut("d")
-                Button("Blob")      { settings.shape = AnyShape(try! Blob2(count: 7))                 }.keyboardShortcut("b")
+                var shape = 0
+                let shapes = ShapeType.allCases
+                Button("Next") {
+                    shape += 1
+                    settings.shape = mkShape(shapes[shape % shapes.count])
+                }.keyboardShortcut("n")
+                
+                Button("Circle")    { settings.shape = mkShape(.circle) }
+                Button("Rectangle") { settings.shape = mkShape(.rectangle) }
+                Button("Capsule")   { settings.shape = mkShape(.capsule) }
+                Button("Ellipse")   { settings.shape = mkShape(.ellipse) }
+                Button("Hexagon")   { settings.shape = mkShape(.hexagon) }
+                Button("Heart")     { settings.shape = mkShape(.heart) }
+                Button("Cloud")     { settings.shape = mkShape(.cloud) }
+                Button("Blob")      { settings.shape = mkShape(.blob) }
             }
             
             CommandMenu("Mirroring") {
