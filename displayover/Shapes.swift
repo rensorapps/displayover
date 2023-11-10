@@ -25,31 +25,39 @@ struct Hexagon: Shape {
     }
 }
 
-/// From: https://swdevnotes.com/swift/2021/create-blob-shape-in-swiftui/
+extension Int {
+    var degrees: Angle { return Angle(degrees: Double(self)) }
+}
+
 struct Heart: Shape {
+    
+    // From https://developer.apple.com/tutorials/sample-apps/animatingshapes
+    
     func path(in rect: CGRect) -> Path {
-        let size = min(rect.width, rect.height)
-        let xOffset = (rect.width > rect.height) ? (rect.width - rect.height) / 2.0 : 0.0
-        let yOffset = (rect.height > rect.width) ? (rect.height - rect.width) / 2.0 : 0.0
+        let len = min(rect.width, rect.height)
+        let sideOne = len * 0.4
+        let sideTwo = len * 0.3
+        let arcRadius = sqrt(sideOne*sideOne + sideTwo*sideTwo)/2
 
-        func offsetPoint(p: CGPoint) -> CGPoint {
-            return CGPoint(x: p.x + xOffset, y: p.y+yOffset)
-        }
         var path = Path()
+        
+        //Calculate Radius of Arcs using Pythagoras
 
-        path.move(to: offsetPoint(p: (CGPoint(x: (size * 0.50), y: (size * 0.25)))))
-        path.addCurve(to: offsetPoint(p: CGPoint(x: 0, y: (size * 0.25))),
-                      control1: offsetPoint(p: CGPoint(x: (size * 0.50), y: (-size * 0.10))),
-                      control2: offsetPoint(p: CGPoint(x: 0, y: 0)))
-        path.addCurve(to: offsetPoint(p: CGPoint(x: (size * 0.50), y: size)),
-                      control1: offsetPoint(p: CGPoint(x: 0, y: (size * 0.60))),
-                      control2: offsetPoint(p: CGPoint(x: (size * 0.50), y: (size * 0.80))))
-        path.addCurve(to: offsetPoint(p: CGPoint(x: size, y: (size * 0.25))),
-                      control1: offsetPoint(p: CGPoint(x: (size * 0.50), y: (size * 0.80))),
-                      control2: offsetPoint(p: CGPoint(x: size, y: (size * 0.60))))
-        path.addCurve(to: offsetPoint(p: CGPoint(x: (size * 0.50), y: (size * 0.25))),
-                      control1: offsetPoint(p: CGPoint(x: size, y: 0)),
-                      control2: offsetPoint(p: CGPoint(x: (size * 0.50), y: (-size * 0.10))))
+        //Left Hand Curve
+        path.addArc(center: CGPoint(x: len * 0.3, y: len * 0.35), radius: arcRadius, startAngle: 135.degrees, endAngle: 315.degrees, clockwise: false)
+
+        //Top Centre Dip
+        path.addLine(to: CGPoint(x: len/2, y: len * 0.2))
+
+        //Right Hand Curve
+        path.addArc(center: CGPoint(x: len * 0.7, y: len * 0.35), radius: arcRadius, startAngle: 225.degrees, endAngle: 45.degrees, clockwise: false)
+
+        //Right Bottom Line
+        path.addLine(to: CGPoint(x: len * 0.5, y: len * 0.95))
+
+        //Left Bottom Line
+        path.closeSubpath()
+        
         return path
     }
 }
