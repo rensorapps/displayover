@@ -13,9 +13,9 @@ Works well in conjunction with QuickTime for screen recording.
 
 ## Issues and Missing Features
 
-See [Github Issues](https://github.com/sordina/displayover/issues) for currently open issues.
+See [Github Issues](https://github.com/rensorapps/displayover/issues) for currently open issues.
 
-Please [submit an issue here](https://github.com/sordina/displayover/issues/new) if you find a new one.
+Please [submit an issue here](https://github.com/rensorapps/displayover/issues/new) if you find a new one.
 
 
 ## Screenshots
@@ -30,3 +30,4 @@ Please [submit an issue here](https://github.com/sordina/displayover/issues/new)
 
 * https://www.loom.com/
 * https://www.mmhmm.app/
+* https://obsproject.com
