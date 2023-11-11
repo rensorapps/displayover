@@ -2,7 +2,7 @@
 
 Overlay your camera preview on your screen similar to Loom's circle presenter feature:
 
-<img width="400" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/a3e648e8-4b3d-4aea-b7e6-eb548e29d314">
+<img width="600" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/a3e648e8-4b3d-4aea-b7e6-eb548e29d314">
 
 <br>
 <br>
