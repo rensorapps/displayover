@@ -41,8 +41,6 @@ struct Heart: Shape {
 
         var path = Path()
         
-        //Calculate Radius of Arcs using Pythagoras
-
         //Left Hand Curve
         path.addArc(center: CGPoint(x: len * 0.3, y: len * 0.35), radius: arcRadius, startAngle: 135.degrees, endAngle: 315.degrees, clockwise: false)
 
@@ -58,11 +56,18 @@ struct Heart: Shape {
         //Left Bottom Line
         path.closeSubpath()
         
-        return path
+        // Shunt the heart back to the middle of our frame
+        // It would be better to just draw it in the right place, but then
+        // I would have to understand how it's drawn like a chump.
+        let br = path.boundingRect
+        let deltaX = rect.midX - br.midX
+        let deltaY = rect.midY - br.midY
+
+        return path.transform(CGAffineTransform(translationX: deltaX, y: deltaY)).path(in: rect)
     }
 }
 
-struct Blob1: Shape {
+struct Cloud: Shape {
     
     var count: Int
     var points: Array<CGPoint>
@@ -74,9 +79,8 @@ struct Blob1: Shape {
         
         points = Array((0...count).map { i in
             let theta =  CGFloat.random(in: 0.95...1.05) * CGFloat(i) * sigma
-            let mx = 0.7 * CGFloat.random(in: 0.95...1)
-            let my = 0.7 * CGFloat.random(in: 0.75...0.95)
-            return CGPoint(x: mx * cos(theta), y: my * sin(theta))
+            let d = 0.8 * CGFloat.random(in: 0.95...1)
+            return CGPoint(x: d * cos(theta), y: d * sin(theta))
         })
     }
     
@@ -104,7 +108,7 @@ struct Blob1: Shape {
     }
 }
 
-struct Blob2: Shape {
+struct Blob: Shape {
     
     var count: Int
     var points: Array<CGPoint>
@@ -123,9 +127,8 @@ struct Blob2: Shape {
         
         let ps = Array((0..<count).map { i in
             let theta =  CGFloat.random(in: 0.95...1.05) * CGFloat(i) * sigma
-            let mx = CGFloat.random(in: 0.95...1)
-            let my = CGFloat.random(in: 0.75...1)
-            return CGPoint(x: mx * cos(theta), y: my * sin(theta))
+            let d = CGFloat.random(in: 0.75...0.9)
+            return CGPoint(x: d * cos(theta), y: d * sin(theta))
         })
         
         points = ps
@@ -149,24 +152,33 @@ struct Blob2: Shape {
         return CGPoint(x: p2.x + p1.x, y: p2.y + p1.y)
     }
     
+    static func mag(_ p1: CGPoint) -> CGFloat {
+        return sqrt(p1.x * p1.x + p1.y * p1.y)
+    }
+    
+    static func like(_ p1: CGPoint, _ times: CGFloat, magnitude p2: CGPoint) -> CGPoint {
+        let p1mag = mag(p1)
+        let p2mag = mag(p2)
+        let ratio = times * p2mag / p1mag
+        return CGPoint(x: ratio * p1.x, y: ratio * p1.y)
+    }
+    
     static func control1(_ a: CGPoint, _ b: CGPoint, _ c: CGPoint) -> CGPoint {
-        let an = Blob2.sub(a,b)
-        let cn = Blob2.sub(c,b)
+        let an = Blob.sub(a,b)
+        let cn = Blob.sub(c,b)
         let m = avg(an, cn)
         let n = CGPoint(x: 0 - m.y, y: m.x)
-        let s = Blob2.scale(0, 0, 0.7, 0.7)
-        let o = s(n)
-        return Blob2.add(o,b)
+        let o = like(n, 0.5, magnitude: cn)
+        return Blob.add(o,b)
     }
     
     static func control2(_ a: CGPoint, _ b: CGPoint, _ c: CGPoint) -> CGPoint {
-        let an = Blob2.sub(a,b)
-        let cn = Blob2.sub(c,b)
+        let an = Blob.sub(a,b)
+        let cn = Blob.sub(c,b)
         let m = avg(an, cn)
         let n = CGPoint(x: m.y, y: 0 - m.x)
-        let s = Blob2.scale(0, 0, 0.7, 0.7)
-        let o = s(n)
-        return Blob2.add(o,b)
+        let o = like(n, 0.5, magnitude: an)
+        return Blob.add(o,b)
     }
     
     func bendy(_ i: Int) -> (CGPoint, CGPoint) {
@@ -175,8 +187,8 @@ struct Blob2: Shape {
         let pb = points[(i + c - 1) % c]
         let pc = points[i]
         let pd = points[(i + 1) % c]
-        let p1 = Blob2.control1(pa, pb, pc)
-        let p2 = Blob2.control2(pb, pc, pd)
+        let p1 = Blob.control1(pa, pb, pc)
+        let p2 = Blob.control2(pb, pc, pd)
         return (p1, p2)
     }
     
@@ -186,7 +198,7 @@ struct Blob2: Shape {
         let h2 = rect.height / 2
         let x = rect.midX
         let y = rect.midY
-        let s = Blob2.scale(x, w2, y, h2)
+        let s = Blob.scale(x, y, w2, h2)
         
         path.move(to: s(points[points.count - 1]))
         
@@ -206,14 +218,14 @@ struct Shapes_Previews: PreviewProvider {
 
         VStack {
             HStack {
-                Circle()
-                Rectangle()
-                Hexagon()
+                mkShape(.circle).frame(width: 200, height: 90).background(.red)
+                mkShape(.rectangle).frame(width: 200, height: 90).background(.green)
+                mkShape(.hexagon).frame(width: 200, height: 90).background(.blue)
             }
             HStack {
-                Heart()
-                Blob1(count: 10)
-                try! Blob2(count: 7)
+                mkShape(.heart).frame(width: 200, height: 90).background(.purple)
+                mkShape(.cloud).frame(width: 200, height: 90).background(.cyan)
+                mkShape(.blob).frame(width: 200, height: 90).background(.indigo)
             }
         }
     }
@@ -238,7 +250,7 @@ func mkShape(_ t: ShapeType) -> AnyShape {
     case .ellipse:   return AnyShape(Ellipse())
     case .hexagon:   return AnyShape(Hexagon())
     case .heart:     return AnyShape(Heart())
-    case .cloud:     return AnyShape(Blob1(count: 10))
-    case .blob:      return AnyShape(try! Blob2(count: 7))
+    case .cloud:     return AnyShape(Cloud(count: 10))
+    case .blob:      return AnyShape(try! Blob(count: 7))
     }
 }
