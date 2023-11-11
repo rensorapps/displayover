@@ -11,6 +11,12 @@ Initially bsed on https://benoitpasquier.com/webcam-utility-app-macos-swiftui/
 
 Works well in conjunction with QuickTime for screen recording.
 
+## Installing
+
+The easiest way to install DispLayover is [via the Apple App Store](https://apps.apple.com/us/developer/rensor/id1690772447).
+
+See the "Building" section if you want to build and run it on your own.
+
 ## Buy Us a Coffee!
 
 We're just two indie devs making (hopefully) useful apps.
@@ -21,6 +27,16 @@ buy this app (and our other apps)
 If you're feeling extra generous, then you can buy us a coffee!
 
 [<img width="200" alt="coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png">](https://www.buymeacoffee.com/rensorapps)
+
+## Building
+
+This is set up as an XCode AppKit SwiftUI project. It has not been tested for
+distribution portability, but if you want to build and run it yourself rather
+than getting it off the Apple App Store, then be our guest!
+
+Currently the project is licensed under the "Commons Clause" license with
+Apache 2.0 as the sublicense. If you can think of a better license then please
+let us know why.
 
 ## Limitations, Issues, and Missing Features
 
@@ -44,3 +60,4 @@ Please [submit an issue here](https://github.com/rensorapps/displayover/issues/n
 * https://www.loom.com/
 * https://www.mmhmm.app/
 * https://obsproject.com
+
