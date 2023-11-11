@@ -19,7 +19,7 @@ See the "Building" section if you want to build and run it on your own.
 
 ## Buy Us a Coffee!
 
-We're just two indie devs making (hopefully) useful apps.
+We're just [two indie devs](https://rensor.app) making (hopefully) useful apps.
 If you like what we're doing then the best way to support us is to
 buy this app (and our other apps)
 [on the Apple App Store](https://apps.apple.com/us/developer/rensor/id1690772447).
