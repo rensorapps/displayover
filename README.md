@@ -2,7 +2,7 @@
 
 Overlay your camera preview on your screen similar to Loom's circle presenter feature:
 
-<img width="500" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/4f899abe-a273-422c-bd08-af741db3562b">
+<img width="400" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/a3e648e8-4b3d-4aea-b7e6-eb548e29d314">
 
 <br>
 <br>
@@ -13,7 +13,7 @@ Works well in conjunction with QuickTime for screen recording.
 
 ## Buy Us a Coffee!
 
-[![](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/rensorapps)
+[<img width="200" alt="coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png">](https://www.buymeacoffee.com/rensorapps)
 
 ## Limitations, Issues, and Missing Features
 
