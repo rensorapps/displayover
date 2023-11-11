@@ -33,10 +33,10 @@ Please [submit an issue here](https://github.com/rensorapps/displayover/issues/n
 
 ## Screenshots
 
-<img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/5cbd7a7e-72d0-43c6-b271-99307334b1ec">
-<img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/b2fe52cc-b40b-4244-8d96-5351b3a3dc43">
-<img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/76337d8e-6155-47a1-a29d-fd1a3bd53d6b">
-<img width="200" alt="screenshot" src="https://github.com/sordina/displayover/assets/92299/a70caa20-6300-4e9c-9ab0-305cb81dd78c">
+<img width="200" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/c8ba7d47-7470-44f6-a215-678306a95c46">
+<img width="200" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/b479dcb8-58fa-4ccc-8250-9a290d6a97be">
+<img width="200" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/67565eaf-d7e9-43ab-8418-c6d1245fe50d">
+<img width="200" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/7853b65d-a075-4a99-a061-04fc887974b7">
 
 
 ## Other Applications
