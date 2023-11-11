@@ -28,7 +28,7 @@ If you're feeling extra generous, then you can buy us a coffee!
 
 [<img width="200" alt="coffee" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png">](https://www.buymeacoffee.com/rensorapps)
 
-## Building
+## Building and Contributing
 
 This is set up as an XCode AppKit SwiftUI project. It has not been tested for
 distribution portability, but if you want to build and run it yourself rather
@@ -37,6 +37,9 @@ than getting it off the Apple App Store, then be our guest!
 Currently the project is licensed under the "Commons Clause" license with
 Apache 2.0 as the sublicense. If you can think of a better license then please
 let us know why.
+
+Feel free to send a [feature request](https://github.com/rensorapps/displayover/issues/new)
+or pull request if you would like to see any additions or changes!
 
 ## Limitations, Issues, and Missing Features
 
