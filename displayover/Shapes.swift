@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct Hexagon: Shape {
     func path(in rect: CGRect) -> Path {
@@ -17,7 +18,7 @@ struct Hexagon: Shape {
         let y = rect.midY
         path.move(to: CGPoint(x: x + side, y: y))
         for theta in ((1...6).map { CGFloat($0) * Double.pi / 3.0 }) {
-            path.addLine(to: CGPoint(x: x + side * cos(theta), y: y + side * sin(theta)))
+            path.addLine(to: CGPoint(x: x + side * Foundation.cos(theta), y: y + side * sin(theta)))
         }
         
         path.closeSubpath()
