@@ -8,10 +8,6 @@
 import SwiftUI
 import AVFoundation
 
-//extension AVCaptureDevice: Equatable {
-//    
-//}
-
 class UserSettings: ObservableObject {
     @Published var shape = AnyShape(Circle())
     @Published var isMirroring = true
@@ -20,9 +16,23 @@ class UserSettings: ObservableObject {
 
 class TransparentWindowView: NSView {
     
+    var lastEntered: DispatchTime?
+    
     func titleHidden(_ hidden: Bool) {
         guard let window else { return }
         window.standardWindowButton(.closeButton)?.superview?.superview?.isHidden = hidden
+    }
+    
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: self.window, queue: nil) { [weak self] notification in
+            self?.titleHidden(false)
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: self.window, queue: nil) { [weak self] notification in
+            self?.titleHidden(true)
+            // window.standardWindowButton(.miniaturizeButton)?.isHidden = true
+            // window.standardWindowButton(.zoomButton)?.isHidden = true
+        }
     }
     
     override func viewDidMoveToWindow() {
@@ -37,25 +47,11 @@ class TransparentWindowView: NSView {
         window.isMovableByWindowBackground = true
         window.hasShadow = true
         
-        // Remove close button grandparent to just show the circle.
-        titleHidden(true)
-        // window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-        // window.standardWindowButton(.zoomButton)?.isHidden = true
+        // titleHidden(true)
+        
+        self.setupNotifications()
         
         super.viewDidMoveToWindow()
-    }
-    
-    override func mouseEntered(with event: NSEvent) {
-        titleHidden(false)
-    }
-
-    override func mouseExited(with event: NSEvent) {
-        // The delay is a hack since we can't consider the titlebar part of the tracked area for some reason...
-        // NOTE: This has a race condition where you could re-enter and have the schedule hiding occur
-        //       There's no way I've found to cancel the dispatch though, with this or OperationQueue
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) { [weak self] in
-            self?.titleHidden(true)
-        }
     }
 }
 
