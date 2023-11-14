@@ -151,14 +151,11 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 if(hover) {
                     Spacer()
-                    HStack(spacing: 0) {
-                        // Button(action: { print("smaller") }, label: { Image(systemName: "minus.circle.fill") })
-                        // Button(action: { print("bigger") }, label: { Image(systemName: "plus.circle.fill") })
-                        Button(action: { print("help") }, label: {
-                            Link(destination: URL(string: "https://github.com/sordina/displayover")!, label: {
-                                Image(systemName: "questionmark.circle.fill")
-                            })
-                        })
+                    HStack(spacing: 5) {
+                        Link(destination: URL(string: "https://github.com/sordina/displayover")!, label: {
+                            Image(systemName: "questionmark.circle.fill").padding(5)
+                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
+//                        Button(action: { print("LOL") }, label: { Text("LOL").padding(5) })
                     }
                 }
             }
