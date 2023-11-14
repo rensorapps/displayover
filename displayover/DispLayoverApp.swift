@@ -19,6 +19,12 @@ class UserSettings: ObservableObject {
 }
 
 class TransparentWindowView: NSView {
+    
+    func titleHidden(_ hidden: Bool) {
+        guard let window else { return }
+        window.standardWindowButton(.closeButton)?.superview?.superview?.isHidden = hidden
+    }
+    
     override func viewDidMoveToWindow() {
         guard let window else { return }
         
@@ -31,21 +37,48 @@ class TransparentWindowView: NSView {
         window.isMovableByWindowBackground = true
         window.hasShadow = true
         
-        // Remove close button parent, and grandparent to just show the circle.
-        window.standardWindowButton(.closeButton)?.superview?.isHidden = true
-        window.standardWindowButton(.closeButton)?.superview?.superview?.isHidden = true
-
+        // Remove close button grandparent to just show the circle.
+        titleHidden(true)
+        // window.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        // window.standardWindowButton(.zoomButton)?.isHidden = true
+        
         super.viewDidMoveToWindow()
+    }
+    
+    override func mouseEntered(with event: NSEvent) {
+        titleHidden(false)
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        // The delay is a hack since we can't consider the titlebar part of the tracked area for some reason...
+        // NOTE: This has a race condition where you could re-enter and have the schedule hiding occur
+        //       There's no way I've found to cancel the dispatch though, with this or OperationQueue
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) { [weak self] in
+            self?.titleHidden(true)
+        }
     }
 }
 
 struct TransparentWindow: NSViewRepresentable {
     func updateNSView(_ nsView: NSView, context: Context) {
-        // Do Nothing
     }
     
     func makeNSView(context: Self.Context) -> NSView {
-        return TransparentWindowView()
+        let win = TransparentWindowView()
+        
+        let trackingOptions: NSTrackingArea.Options = [
+            .mouseEnteredAndExited,
+            .inVisibleRect,
+            .assumeInside,
+            .activeAlways,
+        ]
+        
+        let frame = win.frame
+        let rect = CGRect(x: frame.minX - 100, y: frame.minY - 100, width: frame.width + 100, height: frame.height + 100)
+        
+        win.addTrackingArea(NSTrackingArea(rect: rect, options: trackingOptions, owner: win))
+
+        return win
     }
 }
 
@@ -57,6 +90,7 @@ struct dispLayoverApp: App {
     
     init() {
         // Cameras() Should have prompted for required permissions
+        guard cameras.count > 0 else { return }
         settings.device = cameras[0]
     }
     
