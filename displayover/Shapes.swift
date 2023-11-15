@@ -26,6 +26,13 @@ struct Hexagon: Shape {
     }
 }
 
+struct RoundedRect: Shape {
+    func path(in rect: CGRect) -> Path {
+        let rr = RoundedRectangle(cornerRadius: max(rect.height, rect.width) / 6, style: .continuous)
+        return rr.path(in: rect)
+    }
+}
+
 extension Int {
     var degrees: Angle { return Angle(degrees: Double(self)) }
 }
@@ -246,7 +253,7 @@ enum ShapeType: CaseIterable {
 func mkShape(_ t: ShapeType) -> AnyShape {
     switch t {
     case .circle:    return AnyShape(Circle())
-    case .rectangle: return AnyShape(RoundedRectangle(cornerRadius: 20))
+    case .rectangle: return AnyShape(RoundedRect())
     case .capsule:   return AnyShape(Capsule())
     case .ellipse:   return AnyShape(Ellipse())
     case .hexagon:   return AnyShape(Hexagon())
