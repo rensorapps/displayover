@@ -13,7 +13,7 @@ Works well in conjunction with QuickTime for screen recording.
 
 ## Installing
 
-The easiest way to install DispLayover is [via the Apple App Store](https://apps.apple.com/au/app/displayover/id6471848731?mt=12). [(Also check out our other apps!)](https://apps.apple.com/us/developer/rensor/id1690772447).
+The easiest way to install DispLayover is [via the Apple App Store](https://apps.apple.com/au/app/displayover/id6471848731?mt=12). *([Check out our other apps!](https://apps.apple.com/us/developer/rensor/id1690772447)).*
 
 See the "Building" section if you want to build and run it on your own.
 
