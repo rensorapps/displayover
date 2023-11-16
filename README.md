@@ -69,8 +69,11 @@ Please [submit an issue here](https://github.com/rensorapps/displayover/issues/n
 <img width="200" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/67565eaf-d7e9-43ab-8418-c6d1245fe50d">
 <img width="200" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/7853b65d-a075-4a99-a061-04fc887974b7">
 
+## Background on How this App was Created
 
-## Other Applications
+https://sordina.net/blog/2023/11/16/1700102539-DispLayover.html
+
+## Related Applications
 
 * https://www.loom.com/
 * https://www.mmhmm.app/
