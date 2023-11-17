@@ -221,25 +221,32 @@ struct Blob: Shape {
 }
 
 struct Shapes_Previews: PreviewProvider {
+    
+    static func preview(_ t: ShapeType, _ c: Color) -> some View {
+        return ZStack {
+            mkShape(t).frame(width: 200, height: 90).background(c)
+            Text(t.rawValue).foregroundColor(.black)
+        }
+    }
 
     static var previews: some View {
 
         VStack {
             HStack {
-                mkShape(.circle).frame(width: 200, height: 90).background(.red)
-                mkShape(.rectangle).frame(width: 200, height: 90).background(.green)
-                mkShape(.hexagon).frame(width: 200, height: 90).background(.blue)
+                preview(.circle, .red)
+                preview(.rectangle, .green)
+                preview(.hexagon, .blue)
             }
             HStack {
-                mkShape(.heart).frame(width: 200, height: 90).background(.purple)
-                mkShape(.cloud).frame(width: 200, height: 90).background(.cyan)
-                mkShape(.blob).frame(width: 200, height: 90).background(.indigo)
+                preview(.heart, .purple)
+                preview(.cloud, .cyan)
+                preview(.blob, .indigo)
             }
         }
     }
 }
 
-enum ShapeType: CaseIterable {
+enum ShapeType: String, CaseIterable {
     case circle
     case rectangle
     case capsule
