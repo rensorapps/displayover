@@ -220,32 +220,6 @@ struct Blob: Shape {
     }
 }
 
-struct Shapes_Previews: PreviewProvider {
-    
-    static func preview(_ t: ShapeType, _ c: Color) -> some View {
-        return ZStack {
-            mkShape(t).frame(width: 200, height: 90).background(c)
-            Text(t.rawValue).foregroundColor(.black)
-        }
-    }
-
-    static var previews: some View {
-
-        VStack {
-            HStack {
-                preview(.circle, .red)
-                preview(.rectangle, .green)
-                preview(.hexagon, .blue)
-            }
-            HStack {
-                preview(.heart, .purple)
-                preview(.cloud, .cyan)
-                preview(.blob, .indigo)
-            }
-        }
-    }
-}
-
 enum ShapeType: String, CaseIterable {
     case circle
     case rectangle
@@ -267,5 +241,27 @@ func mkShape(_ t: ShapeType) -> AnyShape {
     case .heart:     return AnyShape(Heart())
     case .cloud:     return AnyShape(Cloud(count: 10))
     case .blob:      return AnyShape(try! Blob(count: 7))
+    }
+}
+
+#Preview {
+    func preview(_ t: ShapeType, _ c: Color) -> some View {
+        return ZStack {
+            mkShape(t).frame(width: 200, height: 90).background(c)
+            Text(t.rawValue).foregroundColor(.black)
+        }
+    }
+
+    return VStack {
+        HStack {
+            preview(.circle, .red)
+            preview(.rectangle, .green)
+            preview(.hexagon, .blue)
+        }
+        HStack {
+            preview(.heart, .purple)
+            preview(.cloud, .cyan)
+            preview(.blob, .indigo)
+        }
     }
 }
