@@ -9,10 +9,25 @@ import SwiftUI
 import AVFoundation
 
 class UserSettings: ObservableObject {
+    
     @Published var shape = mkEvolvingShape(.circle)
     @Published var isMirroring = true
     @Published var isAnimating = false
     @Published var device: AVCaptureDevice?
+    
+    var shapeSelection = ShapeType.circle
+    
+    func nextShape() {
+        let shapes = ShapeType.allCases
+        let i = shapes.firstIndex(of: shapeSelection)!
+        shapeSelection = shapes[(i + 1) % shapes.count]
+        shape = mkEvolvingShape(shapeSelection)
+    }
+    
+    func setShape(_ choice: ShapeType) {
+        shapeSelection = choice
+        shape = mkEvolvingShape(choice)
+    }
 }
 
 class TransparentWindowView: NSView {
@@ -111,13 +126,8 @@ struct dispLayoverApp: App {
         .windowStyle(.hiddenTitleBar)
         .commands {
             CommandMenu("Shape") {
-                var shape = 0
-                let shapes = ShapeType.allCases
-                
-                Button("Next") {
-                    shape += 1
-                    settings.shape = mkEvolvingShape(shapes[shape % shapes.count])
-                }.keyboardShortcut("n")
+              
+                Button("Next") { settings.nextShape() }.keyboardShortcut("n")
                 
                 Button("Toggle Animation") {
                     settings.isAnimating.toggle()
@@ -125,15 +135,15 @@ struct dispLayoverApp: App {
                 
                 Divider()
                 
-                Button("Circle")    { settings.shape = mkEvolvingShape(.circle) }
-                Button("Rectangle") { settings.shape = mkEvolvingShape(.rectangle) }
-                Button("Capsule")   { settings.shape = mkEvolvingShape(.capsule) }
-                Button("Ellipse")   { settings.shape = mkEvolvingShape(.ellipse) }
-                Button("Pentagon")  { settings.shape = mkEvolvingShape(.pentagon) }
-                Button("Hexagon")   { settings.shape = mkEvolvingShape(.hexagon) }
-                Button("Heart")     { settings.shape = mkEvolvingShape(.heart) }
-                Button("Cloud")     { settings.shape = mkEvolvingShape(.cloud) }
-                Button("Blob")      { settings.shape = mkEvolvingShape(.blob) }
+                Button("Circle")    { settings.setShape(.circle) }
+                Button("Rectangle") { settings.setShape(.rectangle) }
+                Button("Capsule")   { settings.setShape(.capsule) }
+                Button("Ellipse")   { settings.setShape(.ellipse) }
+                Button("Pentagon")  { settings.setShape(.pentagon) }
+                Button("Hexagon")   { settings.setShape(.hexagon) }
+                Button("Heart")     { settings.setShape(.heart) }
+                Button("Cloud")     { settings.setShape(.cloud) }
+                Button("Blob")      { settings.setShape(.blob) }
             }
             
             CommandMenu("Mirroring") {

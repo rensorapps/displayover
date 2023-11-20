@@ -156,18 +156,21 @@ struct ContentView: View {
                 if(hover) {
                     Spacer()
                     HStack(spacing: 5) {
-                        Link(destination: URL(string: "https://rensor.app")!, label: {
+                        Link(destination: URL(string: "https://rensor.app/pages/displayover")!, label: {
                             Image(systemName: "questionmark.circle.fill").padding(5)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
                         
-                        // TODO: Button to change shape
+                        
+                        Button(action: { settings.nextShape() }, label: {
+                                Image(systemName: "arrow.triangle.2.circlepath").padding(EdgeInsets(top: 3, leading: 0, bottom: 3, trailing: 0))
+                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
                         
                         Button(action: { settings.isAnimating.toggle() }, label: {
                             settings.isAnimating
-                                ? Image(systemName: "stop.circle.fill").padding(3)
-                                : Image(systemName: "play.circle.fill").padding(3)
+                                ? Image(systemName: "stop.circle.fill").padding(EdgeInsets(top: 3, leading: 0, bottom: 3, trailing: 0))
+                                : Image(systemName: "play.circle.fill").padding(EdgeInsets(top: 3, leading: 0, bottom: 3, trailing: 0))
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
-                    }.font(.system(size: 25))
+                    }.font(.system(size: 20))
                 }
             }
             .transition(.opacity)
