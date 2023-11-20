@@ -46,7 +46,7 @@ class TransparentWindowView: NSView {
         window.backgroundColor = .clear
         window.isMovable = true
         window.isMovableByWindowBackground = true
-        window.hasShadow = true
+        window.hasShadow = false
         
         // titleHidden(true)
         

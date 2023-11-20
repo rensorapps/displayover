@@ -145,7 +145,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
-                .clipShape(settings.shape(theta))
+                .clipShape(settings.shape(theta)) // , style: .init(eoFill: false, antialiased: false))
                 // Update viewModel.device when it changes.
                 .onChange(of: settings.device) { device in
                     guard let device else { return }
@@ -159,6 +159,8 @@ struct ContentView: View {
                         Link(destination: URL(string: "https://rensor.app")!, label: {
                             Image(systemName: "questionmark.circle.fill").padding(5)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
+                        
+                        // TODO: Button to change shape
                         
                         Button(action: { settings.isAnimating.toggle() }, label: {
                             settings.isAnimating
