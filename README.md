@@ -15,9 +15,10 @@ Works well in conjunction with QuickTime for screen recording.
 
 See the application menus (with shortcuts listed) for functions such as:
 
-* Changing camera
-* Changing overlay shape
-* Changing mirroring
+* `(CMD-#)` Changing camera
+* `(CMD-n)` Changing overlay shape
+* `(CMD-f)` Changing mirroring
+* `(CMD-e)` Toggling animation
 
 When focused, the title bar is present with action buttons and can be used for easily finding the corner for resizing the overlay.
 

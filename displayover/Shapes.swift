@@ -8,7 +8,30 @@
 import SwiftUI
 import Foundation
 
-struct Hexagon: Shape {
+struct Shrinkable: Shape {
+    var reference: any Shape
+    var offset: CGFloat = 0
+    
+    var animatableData: CGFloat {
+        get { offset }
+        set { offset = newValue }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        let amount = offset * min(rect.width, rect.height) / 20
+        return reference.path(in: rect.insetBy(dx: amount, dy: amount))
+    }
+}
+
+struct NGon: Shape {
+    var sides: Int
+    var rotationRadians: CGFloat = .zero
+    
+    var animatableData: CGFloat {
+        get { rotationRadians }
+        set { rotationRadians = newValue }
+    }
+    
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let width = rect.width
@@ -16,11 +39,16 @@ struct Hexagon: Shape {
         let side = min(width, height) / 2
         let x = rect.midX
         let y = rect.midY
-        path.move(to: CGPoint(x: x + side, y: y))
-        for theta in ((1...6).map { CGFloat($0) * Double.pi / 3.0 }) {
-            path.addLine(to: CGPoint(x: x + side * Foundation.cos(theta), y: y + side * sin(theta)))
+        let sidesF = CGFloat(sides)
+        
+        func at(_ theta: CGFloat) -> CGPoint {
+            return CGPoint(x: x + side * Foundation.cos(theta), y: y + side * sin(theta))
         }
         
+        path.move(to: at(rotationRadians))
+        for n in (1...sides) {
+            path.addLine(to: at(rotationRadians + 2 * Double.pi * CGFloat(n) / sidesF))
+        }
         path.closeSubpath()
         return path
     }
@@ -35,6 +63,7 @@ struct RoundedRect: Shape {
 
 extension Int {
     var degrees: Angle { return Angle(degrees: Double(self)) }
+    var radians: Angle { return Angle(radians: Double(self)) }
 }
 
 struct Heart: Shape {
@@ -120,12 +149,18 @@ struct Blob: Shape {
     
     var count: Int
     var points: Array<CGPoint>
+    var time: TimeInterval = .zero
+    
+    var animatableData: TimeInterval {
+        get { time }
+        set { time = newValue }
+    }
     
     enum Problem: Error {
         case NotEnoughPoints
     }
     
-    init(count: Int) throws {
+    init(count: Int, time: TimeInterval = .zero) throws {
         
         guard count > 2 else { throw Problem.NotEnoughPoints }
         
@@ -189,7 +224,7 @@ struct Blob: Shape {
         return Blob.add(o,b)
     }
     
-    func bendy(_ i: Int) -> (CGPoint, CGPoint) {
+    static func bendy(_ points: Array<CGPoint>, _ i: Int) -> (CGPoint, CGPoint) {
         let c = points.count
         let pa = points[(i + c - 2) % c]
         let pb = points[(i + c - 1) % c]
@@ -207,11 +242,14 @@ struct Blob: Shape {
         let x = rect.midX
         let y = rect.midY
         let s = Blob.scale(x, y, w2, h2)
+        let ps = points.enumerated().map { (n,p) in
+            CGPoint(x: p.x + 0.03 * Foundation.sin(time + Double(n)), y: p.y + 0.03 * cos(time + Double(n)))
+        }
         
-        path.move(to: s(points[points.count - 1]))
+        path.move(to: s(ps[ps.count - 1]))
         
-        for (i, point) in points.enumerated() {
-            let (p1, p2) = bendy(i)
+        for (i, point) in ps.enumerated() {
+            let (p1, p2) = Blob.bendy(points,i)
             path.addCurve(to: s(point), control1: s(p1), control2: s(p2))
         }
         
@@ -237,10 +275,44 @@ func mkShape(_ t: ShapeType) -> AnyShape {
     case .rectangle: return AnyShape(RoundedRect())
     case .capsule:   return AnyShape(Capsule())
     case .ellipse:   return AnyShape(Ellipse())
-    case .hexagon:   return AnyShape(Hexagon())
+    case .hexagon:   return AnyShape(NGon(sides: 6))
     case .heart:     return AnyShape(Heart())
     case .cloud:     return AnyShape(Cloud(count: 10))
     case .blob:      return AnyShape(try! Blob(count: 7))
+    }
+}
+
+func mkEvolvingShape(_ t: ShapeType) -> ((TimeInterval) -> AnyShape) {
+    switch t {
+        
+    case .hexagon:
+        var reference = NGon(sides: 5)
+        return {
+            reference.rotationRadians = $0 / 10
+            return AnyShape(reference)
+        }
+        
+    case .heart:
+        var reference = Heart()
+        return {
+            let s = Shrinkable(reference: reference, offset: (1+CGFloat(sin($0 * 3))) / 2)
+            return AnyShape(s)
+        }
+        
+    case .blob:
+        var reference = try! Blob(count: 7)
+        return {
+            reference.time = $0
+            return AnyShape(reference)
+        }
+    
+    // Everything that isn't special-cased is a regular Shrinkable with a 2s period
+    default:
+        var reference = mkShape(t)
+        return {
+            let s = Shrinkable(reference: reference, offset: (1+CGFloat(sin($0))) / 2)
+            return AnyShape(s)
+        }
     }
 }
 

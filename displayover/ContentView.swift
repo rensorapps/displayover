@@ -133,15 +133,19 @@ struct ContentView: View {
     @EnvironmentObject var settings: UserSettings
     @ObservedObject var viewModel = ContentViewModel()
     @State var hover = false
+    @State var theta: TimeInterval = .zero
+    
+    static let sampleRate = 0.2
+    let timer = Timer.publish(every: sampleRate, on: .main, in: .common).autoconnect()
     
     init(_ initialSettings: UserSettings) {
         viewModel.device = initialSettings.device
     }
-
+    
     var body: some View {
         ZStack {
             PlayerContainerView(captureSession: viewModel.captureSession, settings: settings)
-                .clipShape(settings.shape)
+                .clipShape(settings.shape(theta))
                 // Update viewModel.device when it changes.
                 .onChange(of: settings.device) { device in
                     guard let device else { return }
@@ -152,17 +156,29 @@ struct ContentView: View {
                 if(hover) {
                     Spacer()
                     HStack(spacing: 5) {
-                        Link(destination: URL(string: "https://github.com/sordina/displayover")!, label: {
+                        Link(destination: URL(string: "https://rensor.app")!, label: {
                             Image(systemName: "questionmark.circle.fill").padding(5)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
-//                        Button(action: { print("LOL") }, label: { Text("LOL").padding(5) })
-                    }
+                        
+                        Button(action: { settings.isAnimating.toggle() }, label: {
+                            settings.isAnimating
+                                ? Image(systemName: "stop.circle.fill").padding(3)
+                                : Image(systemName: "play.circle.fill").padding(3)
+                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
+                    }.font(.system(size: 25))
                 }
             }
             .transition(.opacity)
         }
         .onHover { x in
             hover = x
+        }
+        .onReceive(timer) { time in
+            if(settings.isAnimating) {
+                withAnimation(Animation.linear(duration: ContentView.sampleRate)) {
+                    theta += ContentView.sampleRate
+                }
+            }
         }
     }
 }
