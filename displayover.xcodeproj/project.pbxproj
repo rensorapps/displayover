@@ -282,7 +282,7 @@
 				CODE_SIGN_ENTITLEMENTS = displayover/displayover.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"displayover/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9FL9DQG99;
@@ -313,7 +313,7 @@
 				CODE_SIGN_ENTITLEMENTS = displayover/displayover.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"displayover/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9FL9DQG99;
