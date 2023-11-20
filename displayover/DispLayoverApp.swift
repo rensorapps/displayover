@@ -31,9 +31,10 @@ class TransparentWindowView: NSView {
         
         NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: self.window, queue: nil) { [weak self] notification in
             self?.titleHidden(true)
-            // window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-            // window.standardWindowButton(.zoomButton)?.isHidden = true
         }
+        
+        window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        window?.standardWindowButton(.zoomButton)?.isHidden = true
     }
     
     override func viewDidMoveToWindow() {
@@ -79,11 +80,20 @@ struct TransparentWindow: NSViewRepresentable {
     }
 }
 
+// From https://stackoverflow.com/a/65743682
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
+}
+
 @main
 struct dispLayoverApp: App {
     
     let settings = UserSettings()
     let cameras = Cameras().getCameras()
+    
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init() {
         // Cameras() Should have prompted for required permissions
@@ -92,7 +102,8 @@ struct dispLayoverApp: App {
     }
     
     var body: some Scene {
-        WindowGroup {
+        // Use WindowGroup for multiple windows
+        Window("DispLayover", id: "main") {
             ContentView(settings)
                 .background(TransparentWindow())
                 .environmentObject(settings)
