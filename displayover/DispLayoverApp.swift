@@ -129,6 +129,7 @@ struct dispLayoverApp: App {
                 Button("Rectangle") { settings.shape = mkEvolvingShape(.rectangle) }
                 Button("Capsule")   { settings.shape = mkEvolvingShape(.capsule) }
                 Button("Ellipse")   { settings.shape = mkEvolvingShape(.ellipse) }
+                Button("Pentagon")  { settings.shape = mkEvolvingShape(.pentagon) }
                 Button("Hexagon")   { settings.shape = mkEvolvingShape(.hexagon) }
                 Button("Heart")     { settings.shape = mkEvolvingShape(.heart) }
                 Button("Cloud")     { settings.shape = mkEvolvingShape(.cloud) }

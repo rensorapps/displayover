@@ -263,6 +263,7 @@ enum ShapeType: String, CaseIterable {
     case rectangle
     case capsule
     case ellipse
+    case pentagon
     case hexagon
     case heart
     case cloud
@@ -275,6 +276,7 @@ func mkShape(_ t: ShapeType) -> AnyShape {
     case .rectangle: return AnyShape(RoundedRect())
     case .capsule:   return AnyShape(Capsule())
     case .ellipse:   return AnyShape(Ellipse())
+    case .pentagon:  return AnyShape(NGon(sides: 5))
     case .hexagon:   return AnyShape(NGon(sides: 6))
     case .heart:     return AnyShape(Heart())
     case .cloud:     return AnyShape(Cloud(count: 10))
@@ -285,8 +287,15 @@ func mkShape(_ t: ShapeType) -> AnyShape {
 func mkEvolvingShape(_ t: ShapeType) -> ((TimeInterval) -> AnyShape) {
     switch t {
         
-    case .hexagon:
+    case .pentagon:
         var reference = NGon(sides: 5)
+        return {
+            reference.rotationRadians = $0 / 10
+            return AnyShape(reference)
+        }
+        
+    case .hexagon:
+        var reference = NGon(sides: 6)
         return {
             reference.rotationRadians = $0 / 10
             return AnyShape(reference)
