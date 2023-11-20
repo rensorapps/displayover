@@ -293,7 +293,7 @@ func mkEvolvingShape(_ t: ShapeType) -> ((TimeInterval) -> AnyShape) {
         }
         
     case .heart:
-        var reference = Heart()
+        let reference = Heart()
         return {
             let s = Shrinkable(reference: reference, offset: (1+CGFloat(sin($0 * 3))) / 2)
             return AnyShape(s)
@@ -308,7 +308,7 @@ func mkEvolvingShape(_ t: ShapeType) -> ((TimeInterval) -> AnyShape) {
     
     // Everything that isn't special-cased is a regular Shrinkable with a 2s period
     default:
-        var reference = mkShape(t)
+        let reference = mkShape(t)
         return {
             let s = Shrinkable(reference: reference, offset: (1+CGFloat(sin($0))) / 2)
             return AnyShape(s)
