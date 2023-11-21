@@ -154,21 +154,22 @@ struct ContentView: View {
                 }
             VStack(spacing: 0) {
                 if(hover) {
+                    // This is a hack because image padding is excessive and asymmetrical
+                    let buttonInsets = EdgeInsets(top: 4, leading: -1, bottom: 4, trailing: -7)
                     Spacer()
                     HStack(spacing: 5) {
                         Link(destination: URL(string: "https://rensor.app/pages/displayover")!, label: {
                             Image(systemName: "questionmark.circle.fill").padding(5)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
                         
-                        
                         Button(action: { settings.nextShape() }, label: {
-                                Image(systemName: "arrow.triangle.2.circlepath").padding(EdgeInsets(top: 3, leading: 0, bottom: 3, trailing: 0))
+                            Image(systemName: "arrow.triangle.2.circlepath.circle.fill").padding(buttonInsets)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
                         
                         Button(action: { settings.isAnimating.toggle() }, label: {
                             settings.isAnimating
-                                ? Image(systemName: "stop.circle.fill").padding(EdgeInsets(top: 3, leading: 0, bottom: 3, trailing: 0))
-                                : Image(systemName: "play.circle.fill").padding(EdgeInsets(top: 3, leading: 0, bottom: 3, trailing: 0))
+                                ? Image(systemName: "stop.circle.fill").padding(buttonInsets)
+                                : Image(systemName: "play.circle.fill").padding(buttonInsets)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
                     }.font(.system(size: 20))
                 }
