@@ -155,22 +155,32 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 if(hover) {
                     // This is a hack because image padding is excessive and asymmetrical
-                    let buttonInsets = EdgeInsets(top: 4, leading: -1, bottom: 4, trailing: -7)
+                    let buttonInsets = EdgeInsets(top: 4, leading: -3, bottom: 4, trailing: -3)
                     Spacer()
                     HStack(spacing: 5) {
-                        Link(destination: URL(string: "https://rensor.app/pages/displayover")!, label: {
-                            Image(systemName: "questionmark.circle.fill").padding(5)
-                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
                         
                         Button(action: { settings.nextShape() }, label: {
                             Image(systemName: "arrow.triangle.2.circlepath.circle.fill").padding(buttonInsets)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
-                        
+                            .help("Next Shape")
+
+                        Button(action: { settings.isMirroring.toggle() }, label: {
+                            Image(systemName: "arrow.left.and.right.righttriangle.left.righttriangle.right.fill").padding(buttonInsets)
+                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
+                            .help("Toggle Mirroring")
+
                         Button(action: { settings.isAnimating.toggle() }, label: {
                             settings.isAnimating
                                 ? Image(systemName: "stop.circle.fill").padding(buttonInsets)
                                 : Image(systemName: "play.circle.fill").padding(buttonInsets)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
+                            .help("Toggle Animation")
+                        
+                        Link(destination: URL(string: "https://rensor.app/pages/displayover")!, label: {
+                            Image(systemName: "questionmark.circle.fill").padding(5)
+                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
+                            .help("Go to rensor.app")
+
                     }.font(.system(size: 20))
                 }
             }
