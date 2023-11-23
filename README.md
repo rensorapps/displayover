@@ -22,6 +22,8 @@ See the application menus (with shortcuts listed) for functions such as:
 
 When focused, the title bar is present with action buttons and can be used for easily finding the corner for resizing the overlay.
 
+Drag SVG files with polygons onto the window to change the overlay shape!
+
 Pressing the "?" button when hovering will take you to this page. Hi!
 
 ## Installing

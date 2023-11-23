@@ -135,15 +135,9 @@ struct dispLayoverApp: App {
                 
                 Divider()
                 
-                Button("Circle")    { settings.setShape(.circle) }
-                Button("Rectangle") { settings.setShape(.rectangle) }
-                Button("Capsule")   { settings.setShape(.capsule) }
-                Button("Ellipse")   { settings.setShape(.ellipse) }
-                Button("Pentagon")  { settings.setShape(.pentagon) }
-                Button("Hexagon")   { settings.setShape(.hexagon) }
-                Button("Heart")     { settings.setShape(.heart) }
-                Button("Cloud")     { settings.setShape(.cloud) }
-                Button("Blob")      { settings.setShape(.blob) }
+                ForEach(ShapeType.allCases, id: \.self) { st in
+                    Button("\(st.rawValue)".capitalized) { settings.setShape(st) }
+                }
             }
             
             CommandMenu("Mirroring") {

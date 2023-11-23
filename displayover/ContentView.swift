@@ -40,13 +40,56 @@ class PlayerView: NSView {
         settings.$isMirroring
             .subscribe(on: RunLoop.main)
             .sink { isMirroring in
+                preview.connection?.automaticallyAdjustsVideoMirroring = false
                 preview.connection?.isVideoMirrored = isMirroring
             }
             .store(in: &cancellables)
+        
+        registerForDraggedTypes(PlayerView.allowedDropTypes)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // Drag SVG Files
+    // Example from: https://stackoverflow.com/questions/75652413/how-can-i-accept-a-drop-for-a-dragged-item-on-a-window-tab-in-macos-appkit
+    
+    static let allowedDropTypes: Array<NSPasteboard.PasteboardType> = [.URL]
+
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        return .copy
+    }
+
+    override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
+        return .copy
+    }
+    
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+
+        // Optional: Ignore drags from the same window
+        guard (sender.draggingSource as? NSView)?.window != window else { return false }
+
+        // Check if the dropped item contains text:
+        let pasteboard = sender.draggingPasteboard
+        guard let url = NSURL(from: pasteboard),
+              let path = url.path,
+              path.hasSuffix(".svg"),
+              let u = .some(URL(fileURLWithPath: path)),
+              let x = try? XMLDocument(contentsOf: u),
+              let root = x.rootElement(),
+              let n = root.name,
+              n == "svg",
+              let shape = try? SVG(doc: x),
+              let settings
+              else { return false }
+        
+        settings.shape = {
+            let s = Shrinkable(reference: shape, offset: (1+CGFloat(sin($0))) / 2)
+            return AnyShape(s)
+        }
+        return true
     }
 }
 
@@ -155,7 +198,7 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 if(hover) {
                     // This is a hack because image padding is excessive and asymmetrical
-                    let buttonInsets = EdgeInsets(top: 4, leading: -3, bottom: 4, trailing: -3)
+                    let buttonInsets = EdgeInsets(top: 4, leading: -1, bottom: 4, trailing: -7)
                     Spacer()
                     HStack(spacing: 5) {
                         

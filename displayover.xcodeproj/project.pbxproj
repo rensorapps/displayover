@@ -12,6 +12,13 @@
 		47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BFB2582AEA721A008ABDA5 /* ContentView.swift */; };
 		47BFB25B2AEA721A008ABDA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */; };
 		47BFB25E2AEA721A008ABDA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */; };
+		47DAEE8D2B0EDB5900B27870 /* SVGShape in Frameworks */ = {isa = PBXBuildFile; productRef = 47DAEE8C2B0EDB5900B27870 /* SVGShape */; };
+		47DAEE922B0EDCA200B27870 /* RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DAEE912B0EDCA200B27870 /* RoundedRect.swift */; };
+		47DAEE942B0EDD0300B27870 /* NGon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DAEE932B0EDD0300B27870 /* NGon.swift */; };
+		47DAEE962B0EDD6200B27870 /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DAEE952B0EDD6200B27870 /* Heart.swift */; };
+		47DAEE982B0EDD9300B27870 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DAEE972B0EDD9300B27870 /* Cloud.swift */; };
+		47DAEE9A2B0EDDAD00B27870 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DAEE992B0EDDAD00B27870 /* Blob.swift */; };
+		47DAEE9C2B0EEE0E00B27870 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DAEE9B2B0EEE0E00B27870 /* SVG.swift */; };
 		47E422242AF00E7E00FBB61A /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E422232AF00E7E00FBB61A /* Shapes.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +32,12 @@
 		47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		47BFB25F2AEA721A008ABDA5 /* displayover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = displayover.entitlements; sourceTree = "<group>"; };
 		47D9880C2B0C282500EFB5CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = DispLayover/Info.plist; sourceTree = "<group>"; };
+		47DAEE912B0EDCA200B27870 /* RoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRect.swift; sourceTree = "<group>"; };
+		47DAEE932B0EDD0300B27870 /* NGon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NGon.swift; sourceTree = "<group>"; };
+		47DAEE952B0EDD6200B27870 /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
+		47DAEE972B0EDD9300B27870 /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
+		47DAEE992B0EDDAD00B27870 /* Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
+		47DAEE9B2B0EEE0E00B27870 /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		47E422232AF00E7E00FBB61A /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47DAEE8D2B0EDB5900B27870 /* SVGShape in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +76,7 @@
 			children = (
 				47BFB2562AEA721A008ABDA5 /* DispLayoverApp.swift */,
 				47E422232AF00E7E00FBB61A /* Shapes.swift */,
+				47DAEE8E2B0EDB8E00B27870 /* Shapes */,
 				47AB95C92AF777B200F6A82C /* Cameras.swift */,
 				47BFB2582AEA721A008ABDA5 /* ContentView.swift */,
 				47BFB25A2AEA721A008ABDA5 /* Assets.xcassets */,
@@ -77,6 +92,19 @@
 				47BFB25D2AEA721A008ABDA5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		47DAEE8E2B0EDB8E00B27870 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				47DAEE912B0EDCA200B27870 /* RoundedRect.swift */,
+				47DAEE932B0EDD0300B27870 /* NGon.swift */,
+				47DAEE952B0EDD6200B27870 /* Heart.swift */,
+				47DAEE972B0EDD9300B27870 /* Cloud.swift */,
+				47DAEE992B0EDDAD00B27870 /* Blob.swift */,
+				47DAEE9B2B0EEE0E00B27870 /* SVG.swift */,
+			);
+			path = Shapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +123,9 @@
 			dependencies = (
 			);
 			name = DispLayover;
+			packageProductDependencies = (
+				47DAEE8C2B0EDB5900B27870 /* SVGShape */,
+			);
 			productName = displayover;
 			productReference = 47BFB2532AEA721A008ABDA5 /* DispLayover.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +154,9 @@
 				Base,
 			);
 			mainGroup = 47BFB24A2AEA721A008ABDA5;
+			packageReferences = (
+				47DAEE8B2B0EDB5900B27870 /* XCRemoteSwiftPackageReference "Swift-SVGShape" */,
+			);
 			productRefGroup = 47BFB2542AEA721A008ABDA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -150,9 +184,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				47AB95CA2AF777B200F6A82C /* Cameras.swift in Sources */,
+				47DAEE982B0EDD9300B27870 /* Cloud.swift in Sources */,
+				47DAEE9A2B0EDDAD00B27870 /* Blob.swift in Sources */,
 				47BFB2592AEA721A008ABDA5 /* ContentView.swift in Sources */,
+				47DAEE9C2B0EEE0E00B27870 /* SVG.swift in Sources */,
+				47DAEE962B0EDD6200B27870 /* Heart.swift in Sources */,
 				47BFB2572AEA721A008ABDA5 /* DispLayoverApp.swift in Sources */,
 				47E422242AF00E7E00FBB61A /* Shapes.swift in Sources */,
+				47DAEE942B0EDD0300B27870 /* NGon.swift in Sources */,
+				47DAEE922B0EDCA200B27870 /* RoundedRect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +324,7 @@
 				CODE_SIGN_ENTITLEMENTS = displayover/displayover.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.0.4;
+				CURRENT_PROJECT_VERSION = 3.1.0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"displayover/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9FL9DQG99;
@@ -300,7 +340,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				MARKETING_VERSION = 1.20;
+				MARKETING_VERSION = 1.21;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -316,7 +356,7 @@
 				CODE_SIGN_ENTITLEMENTS = displayover/displayover.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.0.4;
+				CURRENT_PROJECT_VERSION = 3.1.0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"displayover/Preview Content\"";
 				DEVELOPMENT_TEAM = Q9FL9DQG99;
@@ -332,7 +372,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				MARKETING_VERSION = 1.20;
+				MARKETING_VERSION = 1.21;
 				PRODUCT_BUNDLE_IDENTIFIER = RenSor.displayover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -362,6 +402,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47DAEE8B2B0EDB5900B27870 /* XCRemoteSwiftPackageReference "Swift-SVGShape" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rensorapps/Swift-SVGShape.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47DAEE8C2B0EDB5900B27870 /* SVGShape */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47DAEE8B2B0EDB5900B27870 /* XCRemoteSwiftPackageReference "Swift-SVGShape" */;
+			productName = SVGShape;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 47BFB24B2AEA721A008ABDA5 /* Project object */;
 }
