@@ -4,6 +4,8 @@ Overlay a camera preview on your screen similar to Loom's circle presenter featu
 
 <img width="600" alt="screenshot" src="https://github.com/rensorapps/displayover/assets/92299/a3e648e8-4b3d-4aea-b7e6-eb548e29d314">
 
+See a demonstration of [DispLayover in use](https://youtu.be/MRhxkbM5k0Y) on YouTube!
+
 <br>
 <br>
 
