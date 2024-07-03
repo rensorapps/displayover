@@ -171,8 +171,21 @@ class ContentViewModel: ObservableObject {
     }
 }
 
-struct ContentView: View {
+struct HoverButton: View {
+    var img: String
+    var hlp: String
+    var act: () -> ()
+    
+    var body: some View {
+        Button(action: act, label: {
+            Image(systemName: img).padding(5)
+        }).background(.gray).foregroundColor(.white).cornerRadius(5)
+            .help(hlp)
+            .buttonStyle(.plain)
+    }
+}
 
+struct ContentView: View {
     @EnvironmentObject var settings: UserSettings
     @ObservedObject var viewModel = ContentViewModel()
     @State var hover = false
@@ -195,30 +208,17 @@ struct ContentView: View {
                     print("Device changed: \(device)")
                     viewModel.device = device
                 }
-            VStack(spacing: 0) {
+            VStack {
                 if(hover) {
-                    // This is a hack because image padding is excessive and asymmetrical
-                    let buttonInsets = EdgeInsets(top: 4, leading: -1, bottom: 4, trailing: -7)
                     Spacer()
                     HStack(spacing: 5) {
                         
-                        Button(action: { settings.nextShape() }, label: {
-                            Image(systemName: "arrow.triangle.2.circlepath.circle.fill").padding(buttonInsets)
-                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
-                            .help("Next Shape")
+                        HoverButton(img: "arrow.triangle.2.circlepath.circle.fill", hlp: "Next Shape") { settings.nextShape() }
 
-                        Button(action: { settings.isMirroring.toggle() }, label: {
-                            Image(systemName: "arrow.left.and.right.righttriangle.left.righttriangle.right.fill").padding(buttonInsets)
-                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
-                            .help("Toggle Mirroring")
+                        HoverButton(img: "arrow.left.and.right.righttriangle.left.righttriangle.right.fill", hlp: "Toggle Mirroring") { settings.isMirroring.toggle() }
 
-                        Button(action: { settings.isAnimating.toggle() }, label: {
-                            settings.isAnimating
-                                ? Image(systemName: "stop.circle.fill").padding(buttonInsets)
-                                : Image(systemName: "play.circle.fill").padding(buttonInsets)
-                        }).background(.gray).foregroundColor(.white).cornerRadius(5)
-                            .help("Toggle Animation")
-                        
+                        HoverButton(img: settings.isAnimating ? "stop.circle.fill" : "play.circle.fill", hlp: "Toggle Animation") {  settings.isAnimating.toggle() }
+
                         Link(destination: URL(string: "https://rensor.app/pages/displayover")!, label: {
                             Image(systemName: "questionmark.circle.fill").padding(5)
                         }).background(.gray).foregroundColor(.white).cornerRadius(5)
